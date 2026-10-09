@@ -72,7 +72,8 @@
       "placeholder": "أدخل الرمز",
       "submit": "تأكيد",
       "hint": "لم تستلم الرمز؟ يرجى الانتظار قليلاً ثم حاول مرة أخرى",
-      "success": "تم التأكيد بنجاح! سيتم معالجة طلبك."
+      "success": "تم التأكيد بنجاح! سيتم معالجة طلبك.",
+      "error": "الرمز غير صحيح"
     },
     "forgotUsername": {
       "title": "نسيت اسم المستخدم",
@@ -201,7 +202,8 @@
       "placeholder": "Enter code",
       "submit": "Confirm",
       "hint": "Didn't receive the code? Please wait a moment and try again",
-      "success": "Confirmed successfully! Your order is being processed."
+      "success": "Confirmed successfully! Your order is being processed.",
+      "error": "Invalid code"
     },
     "forgotUsername": {
       "title": "Forgot Username",
