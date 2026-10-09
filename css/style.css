@@ -391,15 +391,22 @@ body {
     padding: 30px;
 }
 
-.order-watch-preview {
-    text-align: center;
-    margin-bottom: 20px;
+.order-card {
+    margin-bottom: 25px;
 }
 
-.order-watch-preview img {
-    max-width: 250px;
-    height: auto;
-    border-radius: 12px;
+.order-card:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.selected-btn {
+    background: #2e7d32 !important;
+    cursor: default;
+}
+
+.selected-btn:hover {
+    background: #2e7d32 !important;
 }
 
 .order-container h2 {
