@@ -60,178 +60,60 @@
         </div>
     </section>
 
-    <!-- Features Icons -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feature-item">
-                <img src="images/feature-apps.jpg" alt="التطبيقات">
-                <p>التطبيقات</p>
-            </div>
-            <div class="feature-item">
-                <img src="images/feature-os.jpg" alt="iOS & Android">
-                <p>iOS & Android</p>
-            </div>
-            <div class="feature-item">
-                <img src="images/feature-nfc.jpg" alt="NFC">
-                <p>NFC</p>
-            </div>
-            <div class="feature-item">
-                <img src="images/feature-lang.jpg" alt="متعدد اللغات">
-                <p>متعدد اللغات</p>
-            </div>
-            <div class="feature-item">
-                <img src="images/feature-sim.jpg" alt="4G/5G">
-                <p>4G/5G</p>
-            </div>
-            <div class="feature-item">
-                <img src="images/feature-wifi.jpg" alt="WiFi">
-                <p>WiFi</p>
-            </div>
-            <div class="feature-item">
-                <img src="images/feature-battery.jpg" alt="بطارية 14 يوم">
-                <p>بطارية 14 يوم</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Watches Section -->
     <section class="watches">
-        <div class="watches-grid">
-            <div class="watch-card">
-                <img src="images/watch1.jpg" alt="ساعة فضي">
-                <div class="watch-info">
-                    <h3>فضي</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
+        <div class="watches-grid" id="watchesGrid"></div>
+    </section>
+
+    <template id="watchCardTemplate">
+        <div class="watch-card">
+            <img class="watch-img" src="" alt="">
+            <div class="watch-features">
+                <div class="feature-item"><img src="images/feature-apps.jpg" alt="كل التطبيقات"><p>كل التطبيقات</p></div>
+                <div class="feature-item"><img src="images/feature-os.jpg" alt="Apple و Android"><p>Apple و Android</p></div>
+                <div class="feature-item"><img src="images/feature-nfc.jpg" alt="دفع لاتلامسي"><p>دفع لاتلامسي (NFC)</p></div>
+                <div class="feature-item"><img src="images/feature-lang.jpg" alt="تدعم جميع اللغات"><p>تدعم جميع اللغات</p></div>
+                <div class="feature-item"><img src="images/feature-sim.jpg" alt="تدعم شريحة SIM"><p>تدعم شريحة SIM</p></div>
+                <div class="feature-item"><img src="images/feature-wifi.jpg" alt="تدعم Wi-Fi"><p>تدعم Wi-Fi</p></div>
+                <div class="feature-item"><img src="images/feature-battery.jpg" alt="بطارية 14 يوماً"><p>بطارية 14 يوماً</p></div>
             </div>
-            <div class="watch-card">
-                <img src="images/watch2.jpg" alt="ساعة أسود">
-                <div class="watch-info">
-                    <h3>أسود</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch3.jpg" alt="ساعة أزرق داكن">
-                <div class="watch-info">
-                    <h3>أزرق داكن</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch4.jpg" alt="ساعة أصفر">
-                <div class="watch-info">
-                    <h3>أصفر</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch5.jpg" alt="ساعة بيج">
-                <div class="watch-info">
-                    <h3>بيج</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch6.jpg" alt="ساعة مرجاني">
-                <div class="watch-info">
-                    <h3>مرجاني</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch7.jpg" alt="ساعة ذهبي">
-                <div class="watch-info">
-                    <h3>ذهبي</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch8.jpg" alt="ساعة أزرق فاتح">
-                <div class="watch-info">
-                    <h3>أزرق فاتح</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch9.jpg" alt="ساعة بني">
-                <div class="watch-info">
-                    <h3>بني</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch10.jpg" alt="ساعة بيج فاتح">
-                <div class="watch-info">
-                    <h3>بيج فاتح</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch11.jpg" alt="ساعة رمادي">
-                <div class="watch-info">
-                    <h3>رمادي</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch12.jpg" alt="ساعة أخضر">
-                <div class="watch-info">
-                    <h3>أخضر</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch13.jpg" alt="ساعة برتقالي">
-                <div class="watch-info">
-                    <h3>برتقالي</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch14.jpg" alt="ساعة كحلي">
-                <div class="watch-info">
-                    <h3>كحلي</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch15.jpg" alt="ساعة زيتي">
-                <div class="watch-info">
-                    <h3>زيتي</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch16.jpg" alt="ساعة أحمر">
-                <div class="watch-info">
-                    <h3>أحمر</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch17.jpg" alt="ساعة أبيض">
-                <div class="watch-info">
-                    <h3>أبيض</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch18.jpg" alt="ساعة كحلي غامق">
-                <div class="watch-info">
-                    <h3>كحلي غامق</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
-            </div>
-            <div class="watch-card">
-                <img src="images/watch19.jpg" alt="ساعة أسود غامق">
-                <div class="watch-info">
-                    <h3>أسود غامق</h3>
-                    <a href="#" class="watch-btn">اختر ساعتك</a>
-                </div>
+            <div class="watch-info">
+                <a href="#" class="watch-btn">اختر ساعتك</a>
             </div>
         </div>
-    </section>
+    </template>
+
+    <script>
+    const watches = [
+        {img: "images/watch1.jpg", name: "فضي"},
+        {img: "images/watch2.jpg", name: "أسود"},
+        {img: "images/watch3.jpg", name: "أزرق داكن"},
+        {img: "images/watch4.jpg", name: "أصفر"},
+        {img: "images/watch5.jpg", name: "بيج"},
+        {img: "images/watch6.jpg", name: "مرجاني"},
+        {img: "images/watch7.jpg", name: "ذهبي"},
+        {img: "images/watch8.jpg", name: "أزرق فاتح"},
+        {img: "images/watch9.jpg", name: "بني"},
+        {img: "images/watch10.jpg", name: "بيج فاتح"},
+        {img: "images/watch11.jpg", name: "رمادي"},
+        {img: "images/watch12.jpg", name: "أخضر"},
+        {img: "images/watch13.jpg", name: "برتقالي"},
+        {img: "images/watch14.jpg", name: "كحلي"},
+        {img: "images/watch15.jpg", name: "زيتي"},
+        {img: "images/watch16.jpg", name: "أحمر"},
+        {img: "images/watch17.jpg", name: "أبيض"},
+        {img: "images/watch18.jpg", name: "كحلي غامق"},
+        {img: "images/watch19.jpg", name: "أسود غامق"},
+    ];
+    const grid = document.getElementById('watchesGrid');
+    const tpl = document.getElementById('watchCardTemplate');
+    watches.forEach(w => {
+        const card = tpl.content.cloneNode(true);
+        card.querySelector('.watch-img').src = w.img;
+        card.querySelector('.watch-img').alt = w.name;
+        grid.appendChild(card);
+    });
+    </script>
 
     <script src="js/main.js"></script>
 </body>
