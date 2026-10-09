@@ -79,7 +79,9 @@
       "subtitle": "الرجاء إدخال البريد الإلكتروني لتلقي الارشاد",
       "emailLabel": "عنوان البريد الإلكتروني",
       "submit": "تأكيد البريد الإلكتروني",
-      "success": "تم إرسال الإرشادات إلى بريدك الإلكتروني"
+      "error": "البريد الإلكتروني غير صحيح يرجى إدخال البريد الإلكتروني المسجل لدى المصرف الليبي الإسلامي",
+      "successTitle": "تم ارسال اسم المستخدم",
+      "successText": "تم ارسال اسم المستخدم الى البريد الإلكتروني"
     },
     "footer": {
       "aboutTitle": "نبذة عن المصرف",
@@ -187,7 +189,9 @@
       "subtitle": "Please enter your email to receive guidance",
       "emailLabel": "Email Address",
       "submit": "Confirm Email",
-      "success": "Instructions have been sent to your email"
+      "error": "Invalid email. Please enter the email registered with the Libyan Islamic Bank",
+      "successTitle": "Username Sent",
+      "successText": "Your username has been sent to your email"
     },
     "footer": {
       "aboutTitle": "About the Bank",

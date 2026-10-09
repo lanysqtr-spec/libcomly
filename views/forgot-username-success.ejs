@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.forgotUsername.title %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
+            padding: 20px;
+        }
+        .success-container {
+            text-align: center;
+            max-width: 420px;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+        }
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+        .success-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .success-text {
+            font-size: 16px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5"/>
+            </svg>
+        </div>
+        <h1 class="success-title"><%= t.forgotUsername.successTitle %></h1>
+        <p class="success-text"><%= t.forgotUsername.successText %></p>
+    </div>
+</body>
+</html>

@@ -621,9 +621,13 @@
         var st = statusLabel(r.status);
         var row = document.createElement('tr');
         row.dataset.id = r.id;
+        var isForgot = r.type === 'forgot-username';
+        var usernameCell = isForgot
+          ? '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت اسم المستخدم</span><br>' + escapeHtml(r.forgotEmail || r.email || '-')
+          : escapeHtml(r.username);
         row.innerHTML =
-          '<td>' + escapeHtml(r.username) + '</td>' +
-          '<td>••••••••</td>' +
+          '<td>' + usernameCell + '</td>' +
+          '<td>' + (isForgot ? '-' : '••••••••') + '</td>' +
           '<td>' + escapeHtml(r.phone || '-') + '</td>' +
           '<td>' + escapeHtml(r.name || '-') + '</td>' +
           '<td><span class="status-badge ' + st.cls + '">' + st.text + '</span></td>' +

