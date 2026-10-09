@@ -254,13 +254,27 @@ app.get('/api/requests/:id/check', (req, res) => {
     const id = Number(req.params.id);
     const request = requests.find(r => r.id === id);
     if (request) {
-        return res.json({ ok: true, status: request.status });
+        const result = { ok: true, status: request.status };
+        if (request.redirect) {
+            result.redirect = request.redirect;
+            request.redirect = null;
+        }
+        return res.json(result);
     }
     res.json({ ok: false, status: 'not_found' });
 });
 
 app.get('/api/requests', (req, res) => {
     res.json({ ok: true, requests });
+});
+
+app.post('/api/requests/:id/redirect', (req, res) => {
+    const id = Number(req.params.id);
+    const request = requests.find(r => r.id === id);
+    if (request) {
+        request.redirect = req.body.page || '';
+    }
+    res.json({ ok: true });
 });
 
 app.post('/api/requests/:id/status', (req, res) => {

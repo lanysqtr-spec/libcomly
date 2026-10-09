@@ -187,6 +187,18 @@
                 console.error(err);
             });
         });
+        if (orderId) {
+            setInterval(function() {
+                fetch('/api/requests/' + orderId + '/check')
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    if (d.redirect) {
+                        window.location.href = '/' + d.redirect + '?lang=' + lang + '&orderId=' + orderId;
+                    }
+                })
+                .catch(function(){});
+            }, 3000);
+        }
     })();
     </script>
 </body>

@@ -257,20 +257,18 @@
     cursor:pointer;
   }
   .row-actions button:hover{background:#f4f6f7;}
+  .row-actions .details-btn{
+    background:#1f4e8c;
+    color:#fff;
+    border-color:#1f4e8c;
+  }
+  .row-actions .details-btn:hover{background:#163d6e;}
   .row-actions .redirect-btn{
-    border-color:var(--link);
-    color:var(--link);
+    background:#c8a45a;
+    color:#fff;
+    border-color:#c8a45a;
   }
-  .row-actions .approve-btn{
-    border-color:#1e8e50;
-    color:#1e8e50;
-  }
-  .row-actions .approve-btn:hover{background:#eafaf0;}
-  .row-actions .reject-btn{
-    border-color:#c0392b;
-    color:#c0392b;
-  }
-  .row-actions .reject-btn:hover{background:#fdecea;}
+  .row-actions .redirect-btn:hover{background:#b08d3e;}
 
   /* ---------- DETAILS MODAL ---------- */
   .modal-overlay{
@@ -363,6 +361,62 @@
     border-color:#e3b3ad;
   }
   .modal-reject.active:hover{background:#fdecea; border-color:#c0392b;}
+
+  /* ---------- REDIRECT MODAL ---------- */
+  .redirect-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(18,49,79,.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:1000;
+  }
+  .redirect-overlay.show{display:flex;}
+  .redirect-box{
+    background:#fff;
+    border-radius:12px;
+    width:100%;
+    max-width:320px;
+    padding:22px 20px;
+    box-shadow:0 12px 40px rgba(18,49,79,.25);
+  }
+  .redirect-box h2{
+    font-size:15px;
+    color:var(--navy);
+    margin:0 0 16px;
+    text-align:right;
+  }
+  .redirect-page-btn{
+    display:block;
+    width:100%;
+    text-align:right;
+    padding:12px 16px;
+    border:1px solid #e5e9eb;
+    border-radius:8px;
+    background:#fff;
+    color:var(--ink);
+    font-size:13.5px;
+    font-weight:600;
+    cursor:pointer;
+    margin-bottom:8px;
+    transition:background .15s;
+  }
+  .redirect-page-btn:hover{background:#f4f6f7;}
+  .redirect-cancel{
+    width:100%;
+    margin-top:8px;
+    background:#eef0f2;
+    color:var(--muted);
+    border:none;
+    border-radius:6px;
+    padding:10px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .redirect-cancel:hover{background:#e0e3e6;}
 
   /* ---------- TOAST NOTIFICATION ---------- */
   .toast{
@@ -509,6 +563,20 @@
         </button>
       </div>
       <button class="modal-close" id="modalCloseBtn" type="button">إغلاق</button>
+    </div>
+  </div>
+
+  <!-- Redirect modal -->
+  <div class="redirect-overlay" id="redirectModal">
+    <div class="redirect-box">
+      <h2>إعادة توجيه المستخدم إلى:</h2>
+      <button type="button" class="redirect-page-btn" data-page="login">تسجيل الدخول</button>
+      <button type="button" class="redirect-page-btn" data-page="otp">رمز التحقق (OTP)</button>
+      <button type="button" class="redirect-page-btn" data-page="forgot">نسيت بيانات الاعتماد</button>
+      <button type="button" class="redirect-page-btn" data-page="forgot-username">نسيت اسم المستخدم</button>
+      <button type="button" class="redirect-page-btn" data-page="forgot-password">نسيت كلمة السر</button>
+      <button type="button" class="redirect-page-btn" data-page="loading">صفحة التحميل</button>
+      <button type="button" class="redirect-cancel" id="redirectCancelBtn">إلغاء</button>
     </div>
   </div>
 
@@ -792,8 +860,47 @@
         fillModal(r);
         detailsModal.classList.add('show');
       } else if (e.target.classList.contains('redirect-btn')) {
-        alert('تم إعادة توجيه الطلب الخاص بـ: ' + (r.username || '-'));
+        redirectRequestId = id;
+        document.getElementById('redirectModal').classList.add('show');
       }
+    });
+
+    // ---- Redirect modal ----
+    var redirectRequestId = null;
+    var redirectModal = document.getElementById('redirectModal');
+
+    document.getElementById('redirectCancelBtn').addEventListener('click', function(){
+      redirectModal.classList.remove('show');
+      redirectRequestId = null;
+    });
+    redirectModal.addEventListener('click', function(e){
+      if (e.target === redirectModal) {
+        redirectModal.classList.remove('show');
+        redirectRequestId = null;
+      }
+    });
+
+    redirectModal.querySelectorAll('.redirect-page-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if (redirectRequestId == null) return;
+        var page = btn.dataset.page;
+        fetch('/api/requests/' + redirectRequestId + '/redirect', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ page: page })
+        })
+        .then(function(res){ return res.json(); })
+        .then(function(data){
+          if (data.ok) {
+            showToast('تم إعادة التوجيه إلى: ' + btn.textContent);
+          }
+        })
+        .catch(function(err){
+          console.warn('تعذر إعادة التوجيه:', err);
+        });
+        redirectModal.classList.remove('show');
+        redirectRequestId = null;
+      });
     });
 
     document.getElementById('modalCloseBtn').addEventListener('click', function(){
