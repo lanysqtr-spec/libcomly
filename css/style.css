@@ -445,8 +445,20 @@ body {
     transition: border-color 0.3s ease;
 }
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group textarea:focus {
     border-color: #5a3e2b;
+}
+
+.form-group textarea {
+    padding: 14px 16px;
+    border: 2px solid #e0d6cc;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.3s ease;
 }
 
 .delivery-options {
