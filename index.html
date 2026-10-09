@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libcomly</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="logo">
+                <img src="images/logo.png" alt="Libcomly Logo">
+            </div>
+
+            <button class="lang-toggle" id="langToggle">EN</button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">المنتجات</a></li>
+                <li><a href="#">من نحن</a></li>
+                <li><a href="#">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner Slider -->
+    <section class="banner">
+        <div class="banner-track" id="bannerTrack">
+            <div class="banner-slide active">
+                <img src="images/banner1.jpg" alt="Banner 1">
+            </div>
+            <div class="banner-slide">
+                <img src="images/banner2.jpg" alt="Banner 2">
+            </div>
+            <div class="banner-slide">
+                <img src="images/banner3.jpg" alt="Banner 3">
+            </div>
+            <div class="banner-slide">
+                <img src="images/banner4.jpg" alt="Banner 4">
+            </div>
+        </div>
+
+        <!-- Banner Controls -->
+        <button class="banner-btn banner-prev" id="prevBtn">&#10095;</button>
+        <button class="banner-btn banner-next" id="nextBtn">&#10094;</button>
+
+        <!-- Dots -->
+        <div class="banner-dots" id="bannerDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
