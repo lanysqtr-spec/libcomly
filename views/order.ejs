@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t.orderTitle %> - <%= t.bankName %></title>
+    <title><%= t.order.title %> - <%= t.bankName %></title>
     <link rel="stylesheet" href="/css/style.css">
     <% if (lang === 'ar') { %>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
     <!-- Watch Banner -->
     <section class="order-banner">
-        <img id="selectedWatch" src="" alt="<%= t.selectedWatch %>">
+        <img id="selectedWatch" src="" alt="<%= t.selected %>">
     </section>
 
     <!-- Features -->
@@ -37,42 +37,42 @@
     <section class="order-form-section">
         <form id="orderForm" class="order-form">
             <div class="form-group">
-                <label for="name"><%= t.form.name %></label>
-                <input type="text" id="name" name="name" required>
+                <label for="name"><%= t.order.name %></label>
+                <input type="text" id="name" name="name" placeholder="<%= t.order.namePlaceholder %>" required>
             </div>
 
             <div class="form-group">
-                <label for="phone"><%= t.form.phone %></label>
+                <label for="phone"><%= t.order.phone %></label>
                 <input type="tel" id="phone" name="phone" pattern="^09[0-9]{8}$" required>
-                <small class="phone-hint"><%= t.form.phoneHint %></small>
+                <small class="phone-hint"><%= t.order.phoneHint %></small>
             </div>
 
             <div class="form-group">
-                <label for="email"><%= t.form.email %></label>
+                <label for="email"><%= t.order.email %></label>
                 <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
-                <label><%= t.form.deliveryMethod %></label>
+                <label><%= t.order.deliveryMethod %></label>
                 <div class="radio-group">
                     <label class="radio-label">
                         <input type="radio" name="delivery" value="home" checked>
-                        <span><%= t.form.homeDelivery %></span>
+                        <span><%= t.order.homeDelivery %></span>
                     </label>
                     <label class="radio-label">
                         <input type="radio" name="delivery" value="branch">
-                        <span><%= t.form.branchPickup %></span>
+                        <span><%= t.order.branchPickup %></span>
                     </label>
                 </div>
             </div>
 
             <!-- Branch Selection (hidden by default) -->
             <div class="form-group" id="branchGroup" style="display:none;">
-                <label for="branch"><%= t.form.selectBranch %></label>
+                <label for="branch"><%= t.order.selectBranch %></label>
                 <select id="branch" name="branch">
-                    <option value=""><%= t.form.chooseBranch %></option>
+                    <option value=""><%= t.order.selectBranchDefault %></option>
                     <% branches.forEach(function(b) { %>
-                    <option value="<%= b %>"><%= b %></option>
+                    <option value="<%= b.value %>"><%= lang === 'ar' ? b.name_ar : b.name_en %></option>
                     <% }); %>
                 </select>
             </div>
@@ -80,29 +80,29 @@
             <!-- Address Fields (shown by default for home delivery) -->
             <div id="addressGroup">
                 <div class="form-group">
-                    <label for="governorate"><%= t.form.governorate %></label>
+                    <label for="governorate"><%= t.order.governorate %></label>
                     <select id="governorate" name="governorate">
-                        <option value=""><%= t.form.chooseGovernorate %></option>
+                        <option value=""><%= t.order.governorateDefault %></option>
                         <% Object.keys(cities).forEach(function(gov) { %>
-                        <option value="<%= gov %>"><%= gov %></option>
+                        <option value="<%= gov %>"><%= lang === 'ar' ? cities[gov].name_ar : cities[gov].name_en %></option>
                         <% }); %>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="city"><%= t.form.city %></label>
+                    <label for="city"><%= t.order.city %></label>
                     <select id="city" name="city">
-                        <option value=""><%= t.form.chooseCity %></option>
+                        <option value=""><%= t.order.cityDefault %></option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="address"><%= t.form.addressDetails %></label>
-                    <textarea id="address" name="address" rows="3"></textarea>
+                    <label for="address"><%= t.order.addressDetails %></label>
+                    <textarea id="address" name="address" rows="3" placeholder="<%= t.order.addressPlaceholder %>"></textarea>
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn"><%= t.form.submit %></button>
+            <button type="submit" class="submit-btn"><%= t.order.submit %></button>
         </form>
     </section>
 
@@ -143,14 +143,17 @@
 
         govSelect.addEventListener('change', function() {
             var gov = this.value;
-            citySelect.innerHTML = '<option value=""><%= t.form.chooseCity %></option>';
+            citySelect.innerHTML = '<option value=""><%= t.order.cityDefault %></option>';
             if (gov && citiesData[gov]) {
-                citiesData[gov].forEach(function(c) {
-                    var opt = document.createElement('option');
-                    opt.value = c;
-                    opt.textContent = c;
-                    citySelect.appendChild(opt);
-                });
+                var cityList = lang === 'ar' ? citiesData[gov].cities_ar : citiesData[gov].cities_en;
+                if (cityList) {
+                    cityList.forEach(function(c) {
+                        var opt = document.createElement('option');
+                        opt.value = c;
+                        opt.textContent = c;
+                        citySelect.appendChild(opt);
+                    });
+                }
             }
         });
 

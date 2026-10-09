@@ -46,6 +46,7 @@
       "submit": "متابعة الطلب"
     },
     "login": {
+      "title": "تسجيل الدخول",
       "subtitle": "للبدء أدخل البيانات الشخصية المصرفية",
       "username": "اسم المستخدم",
       "password": "كلمة المرور",
@@ -54,10 +55,12 @@
       "error": "اسم المستخدم أو كلمة المرور غير صحيح"
     },
     "loading": {
+      "title": "جاري التحميل",
       "text": "جاري التحقق من بياناتك...",
       "sub": "يرجى الانتظار"
     },
     "otp": {
+      "title": "رمز التحقق",
       "subtitle": "أدخل رمز التحقق المرسل إلى هاتفك",
       "label": "رمز التحقق (OTP)",
       "placeholder": "أدخل الرمز",
@@ -138,6 +141,7 @@
       "submit": "Continue Order"
     },
     "login": {
+      "title": "Sign In",
       "subtitle": "Enter your banking credentials to continue",
       "username": "Username",
       "password": "Password",
@@ -146,10 +150,12 @@
       "error": "Invalid username or password"
     },
     "loading": {
+      "title": "Loading",
       "text": "Verifying your credentials...",
       "sub": "Please wait"
     },
     "otp": {
+      "title": "Verification Code",
       "subtitle": "Enter the verification code sent to your phone",
       "label": "Verification Code (OTP)",
       "placeholder": "Enter code",

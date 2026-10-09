@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t.otpTitle %> - <%= t.bankName %></title>
+    <title><%= t.otp.title %> - <%= t.bankName %></title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -83,14 +83,14 @@
         <div class="otp-logo">
             <img src="/images/logo-gold.png" alt="<%= t.bankName %>">
         </div>
-        <p class="otp-instruction"><%= t.otpInstruction %></p>
+        <p class="otp-instruction"><%= t.otp.subtitle %></p>
 
         <form id="otpForm">
             <input type="text" id="otpCode" class="otp-input" maxlength="6" inputmode="numeric" pattern="[0-9]*" required placeholder="------">
-            <button type="submit" class="submit-btn"><%= t.otpSubmit %></button>
+            <button type="submit" class="submit-btn"><%= t.otp.submit %></button>
         </form>
 
-        <p class="otp-hint"><%= t.otpHint %></p>
+        <p class="otp-hint"><%= t.otp.hint %></p>
     </div>
 
     <script>
@@ -119,7 +119,7 @@
             .then(function(d) {
                 if (d.ok) {
                     document.querySelector('.submit-btn').disabled = true;
-                    document.querySelector('.submit-btn').textContent = '<%= t.otpSent %>';
+                    document.querySelector('.submit-btn').textContent = '<%= t.otp.success %>';
                 }
             })
             .catch(function(err) {

