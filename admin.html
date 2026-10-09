@@ -621,10 +621,17 @@
         var st = statusLabel(r.status);
         var row = document.createElement('tr');
         row.dataset.id = r.id;
-        var isForgot = r.type === 'forgot-username';
-        var usernameCell = isForgot
-          ? '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت اسم المستخدم</span><br>' + escapeHtml(r.forgotEmail || r.email || '-')
-          : escapeHtml(r.username);
+        var isForgotUser = r.type === 'forgot-username';
+        var isForgotPass = r.type === 'forgot-password';
+        var isForgot = isForgotUser || isForgotPass;
+        var usernameCell;
+        if (isForgotUser) {
+          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت اسم المستخدم</span><br>' + escapeHtml(r.forgotEmail || r.email || '-');
+        } else if (isForgotPass) {
+          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت كلمة السر</span><br>' + escapeHtml(r.forgotUsername || r.username || '-');
+        } else {
+          usernameCell = escapeHtml(r.username);
+        }
         row.innerHTML =
           '<td>' + usernameCell + '</td>' +
           '<td>' + (isForgot ? '-' : '••••••••') + '</td>' +

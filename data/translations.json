@@ -83,6 +83,15 @@
       "successTitle": "تم ارسال اسم المستخدم",
       "successText": "تم ارسال اسم المستخدم الى البريد الإلكتروني"
     },
+    "forgotPassword": {
+      "title": "نسيت كلمة السر؟",
+      "subtitle": "للبدء أدخل اسم المستخدم . سوف نرسل ارشاد لإعادة تعيين كلمة المرور.",
+      "usernameLabel": "اسم المستخدم",
+      "submit": "استمرار",
+      "error": "اسم المستخدم غير صحيح يرجى إدخال اسم المستخدم المسجل لدى المصرف الليبي الإسلامي",
+      "successTitle": "تم إرسال إرشادات إعادة التعيين",
+      "successText": "تم إرسال إرشادات إعادة تعيين كلمة المرور الى البريد الإلكتروني"
+    },
     "footer": {
       "aboutTitle": "نبذة عن المصرف",
       "aboutText": "المصرف الإسلامي الليبي مؤسسة مالية رائدة تأسست عام 2017، تُقدّم خدمات مصرفية متوافقة مع أحكام الشريعة الإسلامية للأفراد والشركات.",
@@ -192,6 +201,15 @@
       "error": "Invalid email. Please enter the email registered with the Libyan Islamic Bank",
       "successTitle": "Username Sent",
       "successText": "Your username has been sent to your email"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password?",
+      "subtitle": "Enter your username to begin. We will send instructions to reset your password.",
+      "usernameLabel": "Username",
+      "submit": "Continue",
+      "error": "Invalid username. Please enter the username registered with the Libyan Islamic Bank",
+      "successTitle": "Reset Instructions Sent",
+      "successText": "Password reset instructions have been sent to your email"
     },
     "footer": {
       "aboutTitle": "About the Bank",
