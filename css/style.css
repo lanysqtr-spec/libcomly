@@ -10,7 +10,7 @@ body {
     overflow-x: hidden;
 }
 
-body[dir="ltr"] {
+[dir="ltr"] body {
     font-family: 'Poppins', 'Cairo', sans-serif;
 }
 
@@ -91,6 +91,8 @@ body[dir="ltr"] {
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .lang-toggle:hover {

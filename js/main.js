@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
-    const langToggle = document.getElementById('langToggle');
     const bannerTrack = document.getElementById('bannerTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -12,41 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoSlideInterval;
     const totalSlides = slides.length;
 
-    // Hamburger Menu
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         mobileNav.classList.toggle('open');
     });
 
-    // Language Toggle
-    langToggle.addEventListener('click', () => {
-        const body = document.body;
-        const html = document.documentElement;
-
-        if (html.getAttribute('lang') === 'ar') {
-            html.setAttribute('lang', 'en');
-            html.setAttribute('dir', 'ltr');
-            body.setAttribute('dir', 'ltr');
-            langToggle.textContent = 'AR';
-
-            document.querySelectorAll('.mobile-nav ul li a').forEach((link, i) => {
-                const enTexts = ['Home', 'Products', 'About Us', 'Contact Us'];
-                if (enTexts[i]) link.textContent = enTexts[i];
-            });
-        } else {
-            html.setAttribute('lang', 'ar');
-            html.setAttribute('dir', 'rtl');
-            body.setAttribute('dir', 'rtl');
-            langToggle.textContent = 'EN';
-
-            document.querySelectorAll('.mobile-nav ul li a').forEach((link, i) => {
-                const arTexts = ['الرئيسية', 'المنتجات', 'من نحن', 'تواصل معنا'];
-                if (arTexts[i]) link.textContent = arTexts[i];
-            });
-        }
-    });
-
-    // Banner Slider
     function goToSlide(index) {
         if (index < 0) index = totalSlides - 1;
         if (index >= totalSlides) index = 0;
@@ -84,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Auto-slide
     function startAutoSlide() {
         autoSlideInterval = setInterval(nextSlide, 4000);
     }
@@ -96,10 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startAutoSlide();
 
-    // Touch/Swipe support
     let touchStartX = 0;
     let touchEndX = 0;
-
     const bannerEl = document.querySelector('.banner');
 
     bannerEl.addEventListener('touchstart', (e) => {
