@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <a href="#" class="forgot-link"><%= t.login.forgot %></a>
+            <a href="/forgot?lang=<%= lang %><%= orderId ? '&orderId=' + orderId : '' %>" class="forgot-link"><%= t.login.forgot %></a>
 
             <button type="submit" class="login-btn"><%= t.login.submit %></button>
         </form>

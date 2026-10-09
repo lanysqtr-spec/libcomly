@@ -54,6 +54,12 @@
       "submit": "تسجيل الدخول",
       "error": "اسم المستخدم أو كلمة المرور غير صحيح"
     },
+    "forgot": {
+      "title": "نسيت بيانات الدخول؟",
+      "subtitle": "اي بيانات لم تستطيع تذكرها ؟",
+      "username": "نسيت اسم المستخدم",
+      "password": "نسيت كلمة المرور"
+    },
     "loading": {
       "title": "جاري التحميل",
       "text": "جاري التحقق من بياناتك...",
@@ -148,6 +154,12 @@
       "forgot": "Forgot credentials?",
       "submit": "Sign In",
       "error": "Invalid username or password"
+    },
+    "forgot": {
+      "title": "Forgot Credentials?",
+      "subtitle": "Which credentials can't you remember?",
+      "username": "Forgot Username",
+      "password": "Forgot Password"
     },
     "loading": {
       "title": "Loading",

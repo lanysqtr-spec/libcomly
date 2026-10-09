@@ -54,6 +54,11 @@ app.get('/login', (req, res) => {
     res.render('login', { lang, t: translations[lang], error: req.query.error, orderId: req.query.orderId });
 });
 
+app.get('/forgot', (req, res) => {
+    const lang = getLang(req);
+    res.render('forgot', { lang, t: translations[lang], orderId: req.query.orderId });
+});
+
 app.get('/loading', (req, res) => {
     const lang = getLang(req);
     res.render('loading', { lang, t: translations[lang], orderId: req.query.orderId });
