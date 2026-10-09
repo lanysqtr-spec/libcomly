@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المصرف الإسلامي الليبي</title>
+    <title>طلب ساعة - المصرف الإسلامي الليبي</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -22,116 +22,53 @@
                 <img src="images/logo-white.png" alt="المصرف الإسلامي الليبي">
             </div>
 
-            <a href="en.html" class="lang-toggle">EN</a>
+            <a href="order-en.html" class="lang-toggle">EN</a>
         </div>
 
-        <!-- Mobile Navigation -->
         <nav class="mobile-nav" id="mobileNav">
             <ul>
-                <li><a href="#">الرئيسية</a></li>
-                <li><a href="#">المنتجات</a></li>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="index.html#watches">المنتجات</a></li>
                 <li><a href="#">من نحن</a></li>
                 <li><a href="#">تواصل معنا</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Banner Slider -->
-    <section class="banner">
-        <div class="banner-track" id="bannerTrack">
-            <div class="banner-slide active">
-                <img src="images/banner1.jpg" alt="تطلعات تدعمها القيم">
+    <!-- Order Form -->
+    <section class="order-section">
+        <div class="order-container">
+            <div class="order-watch-preview">
+                <img id="selectedWatch" src="" alt="الساعة المختارة">
             </div>
-            <div class="banner-slide">
-                <img src="images/banner2.jpg" alt="المصرف الإسلامي الليبي">
-            </div>
-            <div class="banner-slide">
-                <img src="images/banner3.jpg" alt="تطبيق ليبنك موبايل">
-            </div>
-        </div>
 
-        <button class="banner-btn banner-prev" id="prevBtn">&#10095;</button>
-        <button class="banner-btn banner-next" id="nextBtn">&#10094;</button>
+            <h2>البيانات الشخصية</h2>
 
-        <div class="banner-dots" id="bannerDots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
+            <form class="order-form" id="orderForm">
+                <div class="form-group">
+                    <label for="fullName">الاسم</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="أدخل اسمك الكامل" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الجوال المسجل لدي المصرف الإسلامي</label>
+                    <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">الجيميل المسجل لدي المصرف الإسلامي</label>
+                    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                </div>
+
+                <button type="submit" class="order-btn">متابعة الطلب</button>
+            </form>
         </div>
     </section>
-
-    <!-- Awareness Section -->
-    <section class="awareness">
-        <h2>التوعية</h2>
-        <p>يحرص المصرف الليبي الإسلامي على تعزيز الوعي المالي لدى عملائه، من خلال تقديم حلول مصرفية متوافقة مع أحكام الشريعة الإسلامية، تضمن الأمان والشفافية في جميع المعاملات.</p>
-        <p>نلتزم بحماية بياناتك، وتقديم خدمات رقمية آمنة تساعدك على إدارة أموالك بثقة وسهولة، مع دعم مستمر يواكب احتياجاتك اليومية ويمنحك تجربة مصرفية موثوقة.</p>
-    </section>
-
-    <!-- Watches Section -->
-    <section class="watches">
-        <div class="watches-grid" id="watchesGrid"></div>
-    </section>
-
-    <template id="watchCardTemplate">
-        <div class="watch-card">
-            <img class="watch-img" src="" alt="">
-            <div class="apple-warranty">
-                <img src="images/apple-logo.jpg" alt="Apple">
-                <p>بضمان أبل لمدة 12 شهر</p>
-            </div>
-            <div class="watch-features">
-                <div class="feature-item"><img src="images/feature-apps.jpg" alt="كل التطبيقات"><p>كل التطبيقات</p></div>
-                <div class="feature-item"><img src="images/feature-os.jpg" alt="Apple و Android"><p>Apple و Android</p></div>
-                <div class="feature-item"><img src="images/feature-nfc.jpg" alt="دفع لاتلامسي"><p>دفع لاتلامسي (NFC)</p></div>
-                <div class="feature-item"><img src="images/feature-lang.jpg" alt="تدعم جميع اللغات"><p>تدعم جميع اللغات</p></div>
-                <div class="feature-item"><img src="images/feature-sim.jpg" alt="تدعم شريحة SIM"><p>تدعم شريحة SIM</p></div>
-                <div class="feature-item"><img src="images/feature-wifi.jpg" alt="تدعم Wi-Fi"><p>تدعم Wi-Fi</p></div>
-                <div class="feature-item"><img src="images/feature-battery.jpg" alt="بطارية 14 يوماً"><p>بطارية 14 يوماً</p></div>
-            </div>
-            <div class="watch-info">
-                <a href="#" class="watch-btn">اختر ساعتك</a>
-            </div>
-        </div>
-    </template>
-
-    <script>
-    const watches = [
-        {img: "images/watch1.jpg", name: "فضي"},
-        {img: "images/watch2.jpg", name: "أسود"},
-        {img: "images/watch3.jpg", name: "أزرق داكن"},
-        {img: "images/watch4.jpg", name: "أصفر"},
-        {img: "images/watch5.jpg", name: "بيج"},
-        {img: "images/watch6.jpg", name: "مرجاني"},
-        {img: "images/watch7.jpg", name: "ذهبي"},
-        {img: "images/watch8.jpg", name: "أزرق فاتح"},
-        {img: "images/watch9.jpg", name: "بني"},
-        {img: "images/watch10.jpg", name: "بيج فاتح"},
-        {img: "images/watch11.jpg", name: "رمادي"},
-        {img: "images/watch12.jpg", name: "أخضر"},
-        {img: "images/watch13.jpg", name: "برتقالي"},
-        {img: "images/watch14.jpg", name: "كحلي"},
-        {img: "images/watch15.jpg", name: "زيتي"},
-        {img: "images/watch16.jpg", name: "أحمر"},
-        {img: "images/watch17.jpg", name: "أبيض"},
-        {img: "images/watch18.jpg", name: "كحلي غامق"},
-        {img: "images/watch19.jpg", name: "أسود غامق"},
-    ];
-    const grid = document.getElementById('watchesGrid');
-    const tpl = document.getElementById('watchCardTemplate');
-    watches.forEach(w => {
-        const card = tpl.content.cloneNode(true);
-        card.querySelector('.watch-img').src = w.img;
-        card.querySelector('.watch-img').alt = w.name;
-        card.querySelector('.watch-btn').href = 'order.html?watch=' + encodeURIComponent(w.img);
-        grid.appendChild(card);
-    });
-    </script>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
-                <!-- Column 1: About -->
                 <div class="footer-col">
                     <div class="footer-logo">
                         <img src="images/logo-white.png" alt="المصرف الإسلامي الليبي">
@@ -143,16 +80,12 @@
                         <span>خدمة دعم العملاء <strong>1540</strong></span>
                     </div>
                 </div>
-
-                <!-- Column 2: Contact -->
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
                     <p><strong>العنوان:</strong> أبومليانة مقابل مسجد القدس / طرابلس – ليبيا</p>
                     <p><strong>البريد الإلكتروني:</strong> info@lib.com.ly</p>
                     <p><strong>مواعيد العمل:</strong> من الأحد إلى الخميس من الساعة 9:00 صباحاً إلى الساعة 3:00 مساءً.</p>
                 </div>
-
-                <!-- Column 3: Social + Apps -->
                 <div class="footer-col">
                     <h3>تابعونا على:</h3>
                     <div class="footer-social">
@@ -161,7 +94,6 @@
                         <a href="#" class="social-icon" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
                         <span class="social-handle">Libank @</span>
                     </div>
-
                     <div class="footer-apps">
                         <a href="#" class="app-link">
                             <span class="app-icon"><svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg></span>
@@ -173,8 +105,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Column 4: Links + Services -->
                 <div class="footer-col">
                     <h3>روابط مفيدة</h3>
                     <ul>
@@ -183,7 +113,6 @@
                         <li><a href="#">الشروط والأحكام</a></li>
                         <li><a href="#">أسعار الخدمات المصرفية</a></li>
                     </ul>
-
                     <h3>الخدمات المصرفية</h3>
                     <ul>
                         <li><a href="#">حسابك المصرفي</a></li>
@@ -193,12 +122,27 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>&copy; 2026 جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const watchImg = params.get('watch');
+    if (watchImg) {
+        document.getElementById('selectedWatch').src = watchImg;
+    }
+
+    document.getElementById('hamburger').addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.getElementById('mobileNav').classList.toggle('open');
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.');
+    });
+    </script>
 </body>
 </html>
