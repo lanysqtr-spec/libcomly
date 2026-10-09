@@ -539,6 +539,11 @@ body {
     border-color: #5a3e2b;
 }
 
+.phone-hint {
+    font-size: 12px;
+    color: #999;
+}
+
 .order-btn {
     background: #5a3e2b;
     color: #fff;

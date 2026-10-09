@@ -70,7 +70,8 @@
 
                 <div class="form-group">
                     <label for="phone">Phone Number Registered with the Islamic Bank</label>
-                    <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" required>
+                    <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" pattern="^09[1-5]\d{7}$" maxlength="10" required>
+                    <small class="phone-hint">Must start with 09 and be 10 digits</small>
                 </div>
 
                 <div class="form-group">
@@ -291,6 +292,13 @@
 
     document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        const phone = document.getElementById('phone').value.trim();
+        const phoneRegex = /^09[1-5]\d{7}$/;
+        if (!phoneRegex.test(phone)) {
+            alert('Invalid phone number. Must start with 09 and be 10 digits.');
+            document.getElementById('phone').focus();
+            return;
+        }
         alert('Your order has been submitted successfully! We will contact you soon.');
     });
     </script>

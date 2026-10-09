@@ -70,7 +70,8 @@
 
                 <div class="form-group">
                     <label for="phone">رقم الجوال المسجل لدي المصرف الإسلامي</label>
-                    <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" required>
+                    <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" pattern="^09[1-5]\d{7}$" maxlength="10" required>
+                    <small class="phone-hint">يجب أن يبدأ بـ 09 ويتكون من 10 أرقام</small>
                 </div>
 
                 <div class="form-group">
@@ -291,6 +292,13 @@
 
     document.getElementById('orderForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        const phone = document.getElementById('phone').value.trim();
+        const phoneRegex = /^09[1-5]\d{7}$/;
+        if (!phoneRegex.test(phone)) {
+            alert('رقم الهاتف غير صحيح. يجب أن يبدأ بـ 09 ويتكون من 10 أرقام.');
+            document.getElementById('phone').focus();
+            return;
+        }
         alert('تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.');
     });
     </script>
