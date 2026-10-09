@@ -92,6 +92,26 @@
                     </div>
                 </div>
 
+                <div id="branchFields" class="address-fields">
+                    <div class="form-group">
+                        <label for="branchSelect">Select Pickup Branch</label>
+                        <select id="branchSelect" name="branchSelect" required>
+                            <option value="">Select Branch</option>
+                            <option value="abu_meliana">Abu Meliana Branch</option>
+                            <option value="siyahiya">Al Siyahiya Branch</option>
+                            <option value="tajura">Tajura Branch</option>
+                            <option value="souq_jumaa">Souq Al Jumaa Branch</option>
+                            <option value="sarraj">Al Sarraj Branch</option>
+                            <option value="sawani">Al Sawani / Al Draibi Branch</option>
+                            <option value="andalus">Andalus Complex Branch</option>
+                            <option value="zahra">Al Zahra Branch</option>
+                            <option value="benghazi">Benghazi Branch</option>
+                            <option value="misrata">Misrata Branch</option>
+                            <option value="hun">Hun Branch</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div id="addressFields" class="address-fields" style="display:none;">
                     <div class="form-group">
                         <label for="governorate">Governorate</label>
@@ -244,12 +264,16 @@
     const governorate = document.getElementById('governorate');
     const city = document.getElementById('city');
 
+    const branchFields = document.getElementById('branchFields');
+
     deliveryHome.addEventListener('change', function() {
         addressFields.style.display = 'flex';
+        branchFields.style.display = 'none';
     });
 
     deliveryBranch.addEventListener('change', function() {
         addressFields.style.display = 'none';
+        branchFields.style.display = 'flex';
     });
 
     governorate.addEventListener('change', function() {

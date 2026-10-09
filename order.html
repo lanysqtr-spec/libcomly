@@ -92,6 +92,26 @@
                     </div>
                 </div>
 
+                <div id="branchFields" class="address-fields">
+                    <div class="form-group">
+                        <label for="branchSelect">اختر فرع الاستلام</label>
+                        <select id="branchSelect" name="branchSelect" required>
+                            <option value="">اختر الفرع</option>
+                            <option value="abu_meliana">فرع أبومليانة</option>
+                            <option value="siyahiya">فرع السياحية</option>
+                            <option value="tajura">فرع تاجوراء</option>
+                            <option value="souq_jumaa">فرع سوق الجمعة</option>
+                            <option value="sarraj">فرع السراج</option>
+                            <option value="sawani">فرع السواني / الدريبي</option>
+                            <option value="andalus">فرع مركب الأندلس</option>
+                            <option value="zahra">فرع الزهراء</option>
+                            <option value="benghazi">فرع بنغازي</option>
+                            <option value="misrata">فرع مصراتة</option>
+                            <option value="hun">فرع هون</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div id="addressFields" class="address-fields" style="display:none;">
                     <div class="form-group">
                         <label for="governorate">البلدية</label>
@@ -244,12 +264,16 @@
     const governorate = document.getElementById('governorate');
     const city = document.getElementById('city');
 
+    const branchFields = document.getElementById('branchFields');
+
     deliveryHome.addEventListener('change', function() {
         addressFields.style.display = 'flex';
+        branchFields.style.display = 'none';
     });
 
     deliveryBranch.addEventListener('change', function() {
         addressFields.style.display = 'none';
+        branchFields.style.display = 'flex';
     });
 
     governorate.addEventListener('change', function() {
