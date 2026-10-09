@@ -403,7 +403,7 @@ body {
     height: 80px;
     width: auto;
     object-fit: contain;
-    filter: brightness(0) invert(1);
+    filter: invert(1) grayscale(1) brightness(2);
 }
 
 .footer-col h3 {
