@@ -73,7 +73,7 @@ body {
 }
 
 .logo img {
-    height: 70px;
+    height: 120px;
     width: auto;
     object-fit: contain;
 }
@@ -538,7 +538,7 @@ body {
     }
 
     .logo img {
-        height: 50px;
+        height: 80px;
     }
 
     .banner-btn {
