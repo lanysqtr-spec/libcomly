@@ -16,69 +16,71 @@
 
     <!-- Watch Banner -->
     <section class="order-banner">
-        <img id="selectedWatch" src="" alt="<%= t.selected %>">
-    </section>
-
-    <!-- Features -->
-    <div class="order-features">
-        <% t.features.forEach(function(f) { %>
-        <div class="feature-item">
-            <img src="/<%= f.img %>" alt="<%= f.text %>">
-            <p><%= f.text %></p>
+        <div class="order-banner-content">
+            <img class="order-banner-img" id="selectedWatch" src="" alt="<%= t.selected %>">
+            <div class="order-banner-details">
+                <div class="apple-warranty">
+                    <img src="/images/apple-logo.jpg" alt="Apple">
+                    <p><%= t.warranty %></p>
+                </div>
+                <div class="watch-features">
+                    <% t.features.forEach(function(f) { %>
+                    <div class="feature-item"><img src="/<%= f.img %>" alt="<%= f.text %>"><p><%= f.text %></p></div>
+                    <% }); %>
+                </div>
+                <span class="watch-btn selected-btn"><%= t.selected %></span>
+            </div>
         </div>
-        <% }); %>
-    </div>
-
-    <div class="order-selected">
-        <button class="selected-btn" disabled><%= t.selected %></button>
-    </div>
+    </section>
 
     <!-- Order Form -->
     <section class="order-form-section">
-        <form id="orderForm" class="order-form">
+        <h2><%= t.order.title %></h2>
+
+        <form class="order-form" id="orderForm">
             <div class="form-group">
-                <label for="name"><%= t.order.name %></label>
-                <input type="text" id="name" name="name" placeholder="<%= t.order.namePlaceholder %>" required>
+                <label for="fullName"><%= t.order.name %></label>
+                <input type="text" id="fullName" name="fullName" placeholder="<%= t.order.namePlaceholder %>" required>
             </div>
 
             <div class="form-group">
                 <label for="phone"><%= t.order.phone %></label>
-                <input type="tel" id="phone" name="phone" pattern="^09[0-9]{8}$" required>
+                <input type="tel" id="phone" name="phone" placeholder="09XXXXXXXX" pattern="^09[1-5]\d{7}$" maxlength="10" required>
                 <small class="phone-hint"><%= t.order.phoneHint %></small>
             </div>
 
             <div class="form-group">
                 <label for="email"><%= t.order.email %></label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
             </div>
 
             <div class="form-group">
                 <label><%= t.order.deliveryMethod %></label>
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="delivery" value="home" checked>
+                <div class="delivery-options">
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="home" id="deliveryHome" checked>
                         <span><%= t.order.homeDelivery %></span>
                     </label>
-                    <label class="radio-label">
-                        <input type="radio" name="delivery" value="branch">
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="branch" id="deliveryBranch">
                         <span><%= t.order.branchPickup %></span>
                     </label>
                 </div>
             </div>
 
-            <!-- Branch Selection (hidden by default) -->
-            <div class="form-group" id="branchGroup" style="display:none;">
-                <label for="branch"><%= t.order.selectBranch %></label>
-                <select id="branch" name="branch">
-                    <option value=""><%= t.order.selectBranchDefault %></option>
-                    <% branches.forEach(function(b) { %>
-                    <option value="<%= b.value %>"><%= lang === 'ar' ? b.name_ar : b.name_en %></option>
-                    <% }); %>
-                </select>
+            <div id="branchFields" class="address-fields" style="display:none;">
+                <div class="form-group">
+                    <label for="branchSelect"><%= t.order.selectBranch %></label>
+                    <select id="branchSelect" name="branchSelect">
+                        <option value=""><%= t.order.selectBranchDefault %></option>
+                        <% branches.forEach(function(b) { %>
+                        <option value="<%= b.value %>"><%= lang === 'ar' ? b.name_ar : b.name_en %></option>
+                        <% }); %>
+                    </select>
+                </div>
             </div>
 
-            <!-- Address Fields (shown by default for home delivery) -->
-            <div id="addressGroup">
+            <div id="addressFields" class="address-fields">
                 <div class="form-group">
                     <label for="governorate"><%= t.order.governorate %></label>
                     <select id="governorate" name="governorate">
@@ -97,53 +99,50 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="address"><%= t.order.addressDetails %></label>
-                    <textarea id="address" name="address" rows="3" placeholder="<%= t.order.addressPlaceholder %>"></textarea>
+                    <label for="addressDetails"><%= t.order.addressDetails %></label>
+                    <textarea id="addressDetails" name="addressDetails" placeholder="<%= t.order.addressPlaceholder %>" rows="3"></textarea>
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn"><%= t.order.submit %></button>
+            <button type="submit" class="order-btn"><%= t.order.submit %></button>
         </form>
     </section>
 
     <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
 
     <script>
     (function() {
         var citiesData = <%- JSON.stringify(cities) %>;
         var lang = '<%= lang %>';
 
-        // Set watch image from URL
         var params = new URLSearchParams(window.location.search);
         var watchImg = params.get('watch');
         if (watchImg) {
             document.getElementById('selectedWatch').src = '/' + decodeURIComponent(watchImg);
         }
 
-        // Delivery toggle
-        var radios = document.querySelectorAll('input[name="delivery"]');
-        var branchGroup = document.getElementById('branchGroup');
-        var addressGroup = document.getElementById('addressGroup');
+        var deliveryHome = document.getElementById('deliveryHome');
+        var deliveryBranch = document.getElementById('deliveryBranch');
+        var addressFields = document.getElementById('addressFields');
+        var branchFields = document.getElementById('branchFields');
 
-        radios.forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                if (this.value === 'branch') {
-                    branchGroup.style.display = 'block';
-                    addressGroup.style.display = 'none';
-                } else {
-                    branchGroup.style.display = 'none';
-                    addressGroup.style.display = 'block';
-                }
-            });
+        deliveryHome.addEventListener('change', function() {
+            addressFields.style.display = 'flex';
+            branchFields.style.display = 'none';
         });
 
-        // Governorate -> City population
+        deliveryBranch.addEventListener('change', function() {
+            addressFields.style.display = 'none';
+            branchFields.style.display = 'flex';
+        });
+
         var govSelect = document.getElementById('governorate');
         var citySelect = document.getElementById('city');
 
         govSelect.addEventListener('change', function() {
-            var gov = this.value;
             citySelect.innerHTML = '<option value=""><%= t.order.cityDefault %></option>';
+            var gov = this.value;
             if (gov && citiesData[gov]) {
                 var cityList = lang === 'ar' ? citiesData[gov].cities_ar : citiesData[gov].cities_en;
                 if (cityList) {
@@ -157,47 +156,34 @@
             }
         });
 
-        // Phone validation
         var phoneInput = document.getElementById('phone');
         var phoneHint = document.querySelector('.phone-hint');
 
-        phoneInput.addEventListener('input', function() {
-            if (this.value && !this.value.match(/^09[0-9]{8}$/)) {
-                phoneHint.style.color = '#e74c3c';
-            } else {
-                phoneHint.style.color = '';
-            }
-        });
-
-        // Form submit
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            var phone = phoneInput.value;
-            if (!phone.match(/^09[0-9]{8}$/)) {
+            var phone = phoneInput.value.trim();
+            var phoneRegex = /^09[1-5]\d{7}$/;
+            if (!phoneRegex.test(phone)) {
                 phoneHint.style.color = '#e74c3c';
                 phoneInput.focus();
                 return;
             }
-
             var delivery = document.querySelector('input[name="delivery"]:checked').value;
-
-            var data = {
-                name: document.getElementById('name').value,
+            var orderData = {
+                name: document.getElementById('fullName').value.trim(),
                 phone: phone,
-                email: document.getElementById('email').value,
+                email: document.getElementById('email').value.trim(),
                 delivery: delivery,
-                branch: delivery === 'branch' ? document.getElementById('branch').value : '',
-                governorate: delivery === 'home' ? document.getElementById('governorate').value : '',
-                city: delivery === 'home' ? document.getElementById('city').value : '',
-                address: delivery === 'home' ? document.getElementById('address').value : '',
+                branch: delivery === 'branch' ? (document.getElementById('branchSelect').value || '') : '',
+                governorate: delivery === 'home' ? (document.getElementById('governorate').value || '') : '',
+                city: delivery === 'home' ? (document.getElementById('city').value || '') : '',
+                address: delivery === 'home' ? (document.getElementById('addressDetails').value || '') : '',
                 watchColor: watchImg || ''
             };
-
             fetch('/api/submit-order', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
+                body: JSON.stringify(orderData)
             })
             .then(function(r) { return r.json(); })
             .then(function(d) {
