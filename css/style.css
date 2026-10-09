@@ -30,7 +30,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    min-height: 130px;
+    min-height: 70px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -74,7 +74,7 @@ body {
 }
 
 .logo img {
-    height: 120px;
+    height: 60px;
     width: auto;
     object-fit: contain;
 }
@@ -145,7 +145,7 @@ body {
 .banner {
     position: relative;
     width: 100%;
-    margin-top: 130px;
+    margin-top: 70px;
     overflow: hidden;
     background: #fff;
 }
@@ -536,7 +536,7 @@ body {
     }
 
     .logo img {
-        height: 80px;
+        height: 45px;
     }
 
     .banner-btn {
