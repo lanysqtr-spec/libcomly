@@ -74,6 +74,13 @@
       "hint": "لم تستلم الرمز؟ يرجى الانتظار قليلاً ثم حاول مرة أخرى",
       "success": "تم التأكيد بنجاح! سيتم معالجة طلبك."
     },
+    "forgotUsername": {
+      "title": "نسيت اسم المستخدم",
+      "subtitle": "الرجاء إدخال البريد الإلكتروني لتلقي الارشاد",
+      "emailLabel": "عنوان البريد الإلكتروني",
+      "submit": "تأكيد البريد الإلكتروني",
+      "success": "تم إرسال الإرشادات إلى بريدك الإلكتروني"
+    },
     "footer": {
       "aboutTitle": "نبذة عن المصرف",
       "aboutText": "المصرف الإسلامي الليبي مؤسسة مالية رائدة تأسست عام 2017، تُقدّم خدمات مصرفية متوافقة مع أحكام الشريعة الإسلامية للأفراد والشركات.",
@@ -174,6 +181,13 @@
       "submit": "Confirm",
       "hint": "Didn't receive the code? Please wait a moment and try again",
       "success": "Confirmed successfully! Your order is being processed."
+    },
+    "forgotUsername": {
+      "title": "Forgot Username",
+      "subtitle": "Please enter your email to receive guidance",
+      "emailLabel": "Email Address",
+      "submit": "Confirm Email",
+      "success": "Instructions have been sent to your email"
     },
     "footer": {
       "aboutTitle": "About the Bank",

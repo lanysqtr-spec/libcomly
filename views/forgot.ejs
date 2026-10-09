@@ -89,7 +89,7 @@
         <p class="forgot-subtitle"><%= t.forgot.subtitle %></p>
 
         <div class="options-card">
-            <a href="#" class="option-item">
+            <a href="/forgot-username?lang=<%= lang %><%= orderId ? '&orderId=' + orderId : '' %>" class="option-item">
                 <span><%= t.forgot.username %></span>
                 <span class="option-arrow">&lsaquo;</span>
             </a>

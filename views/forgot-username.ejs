@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.forgotUsername.title %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
+            padding: 20px;
+        }
+        .close-btn {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px;
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1;
+        }
+        [dir="ltr"] .close-btn {
+            align-self: flex-start;
+        }
+        .page-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+        }
+        .page-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .page-subtitle {
+            font-size: 15px;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .form-group {
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 25px;
+            text-align: start;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            background: #fff;
+            color: #333;
+            outline: none;
+        }
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+        .submit-btn-wrap {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .submit-btn {
+            width: 100%;
+            max-width: 420px;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            background: #fff;
+            color: #5a3e2b;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #f0ebe5;
+        }
+    </style>
+</head>
+<body>
+    <a href="/forgot?lang=<%= lang %><%= orderId ? '&orderId=' + orderId : '' %>" class="close-btn">&times;</a>
+
+    <div class="page-content">
+        <h1 class="page-title"><%= t.forgotUsername.title %></h1>
+        <p class="page-subtitle"><%= t.forgotUsername.subtitle %></p>
+
+        <form id="forgotForm">
+            <div class="form-group">
+                <label for="email"><%= t.forgotUsername.emailLabel %></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        </form>
+    </div>
+
+    <div class="submit-btn-wrap">
+        <button type="submit" form="forgotForm" class="submit-btn"><%= t.forgotUsername.submit %></button>
+    </div>
+
+    <script>
+    document.getElementById('forgotForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('email').value.trim();
+        if (email) {
+            alert('<%= t.forgotUsername.success %>');
+        }
+    });
+    </script>
+</body>
+</html>
