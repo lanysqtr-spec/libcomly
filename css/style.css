@@ -237,6 +237,29 @@ body {
     transform: scale(1.2);
 }
 
+/* ===== Awareness ===== */
+.awareness {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.awareness h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #5a3e2b;
+    margin-bottom: 20px;
+}
+
+.awareness p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #5a3e2b;
+    line-height: 1.9;
+    margin-bottom: 12px;
+}
+
 /* ===== Watches ===== */
 .watches {
     padding: 40px 20px;
