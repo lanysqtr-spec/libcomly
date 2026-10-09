@@ -237,6 +237,105 @@ body {
     transform: scale(1.2);
 }
 
+/* ===== Features ===== */
+.features {
+    padding: 40px 20px;
+    background: #fff;
+}
+
+.features-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 120px;
+}
+
+.feature-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.feature-item p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a3e2b;
+    text-align: center;
+}
+
+/* ===== Watches ===== */
+.watches {
+    padding: 40px 20px;
+    background: #f9f6f2;
+}
+
+.watches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.watch-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.watch-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.watch-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    padding: 20px;
+    background: #fff;
+}
+
+.watch-info {
+    padding: 15px 20px 25px;
+    text-align: center;
+}
+
+.watch-info h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #5a3e2b;
+    margin-bottom: 15px;
+}
+
+.watch-btn {
+    display: inline-block;
+    background: #5a3e2b;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.watch-btn:hover {
+    background: #3d2a1c;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .banner-slide img {
@@ -251,6 +350,28 @@ body {
         width: 36px;
         height: 36px;
         font-size: 14px;
+    }
+
+    .features-grid {
+        gap: 20px;
+    }
+
+    .feature-item {
+        width: 90px;
+    }
+
+    .feature-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .feature-item p {
+        font-size: 12px;
+    }
+
+    .watches-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
     }
 }
 
