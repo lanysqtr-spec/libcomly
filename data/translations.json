@@ -81,7 +81,10 @@
       "submit": "تأكيد البريد الإلكتروني",
       "error": "البريد الإلكتروني غير صحيح يرجى إدخال البريد الإلكتروني المسجل لدى المصرف الليبي الإسلامي",
       "successTitle": "تم ارسال اسم المستخدم",
-      "successText": "تم ارسال اسم المستخدم الى البريد الإلكتروني"
+      "successText": "تم ارسال اسم المستخدم الى البريد الإلكتروني",
+      "usernameLabel": "اسم المستخدم",
+      "usernameSubmit": "تأكيد",
+      "usernameError": "اسم المستخدم غير صحيح يرجى إدخال اسم المستخدم الصحيح"
     },
     "forgotPassword": {
       "title": "نسيت كلمة السر؟",
@@ -200,7 +203,10 @@
       "submit": "Confirm Email",
       "error": "Invalid email. Please enter the email registered with the Libyan Islamic Bank",
       "successTitle": "Username Sent",
-      "successText": "Your username has been sent to your email"
+      "successText": "Your username has been sent to your email",
+      "usernameLabel": "Username",
+      "usernameSubmit": "Confirm",
+      "usernameError": "Invalid username. Please enter the correct username"
     },
     "forgotPassword": {
       "title": "Forgot Password?",

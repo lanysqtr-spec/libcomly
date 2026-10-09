@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= t.forgotUsername.title %> - <%= t.bankName %></title>
+    <title><%= t.forgotUsername.successTitle %> - <%= t.bankName %></title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,51 +12,134 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
             padding: 20px;
         }
-        .success-container {
-            text-align: center;
-            max-width: 420px;
-        }
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
+        .page-content {
+            flex: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
+            padding-top: 80px;
         }
-        .success-icon svg {
-            width: 40px;
-            height: 40px;
-        }
-        .success-title {
-            font-size: 24px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 15px;
-        }
-        .success-text {
+        .success-msg {
             font-size: 16px;
             color: rgba(255,255,255,0.85);
+            margin-bottom: 40px;
+            text-align: center;
             line-height: 1.7;
+        }
+        .error-msg {
+            color: #ff3333;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            max-width: 420px;
+            display: none;
+        }
+        .error-msg.show {
+            display: block;
+        }
+        #usernameForm {
+            width: 100%;
+            max-width: 420px;
+        }
+        .form-group {
+            width: 100%;
+            margin-bottom: 25px;
+            text-align: start;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            background: #fff;
+            color: #333;
+            outline: none;
+        }
+        .form-group input::placeholder {
+            color: #aaa;
+        }
+        .submit-btn-wrap {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .submit-btn {
+            width: 100%;
+            max-width: 420px;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            background: #fff;
+            color: #5a3e2b;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background: #f0ebe5;
         }
     </style>
 </head>
 <body>
-    <div class="success-container">
-        <div class="success-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 6L9 17l-5-5"/>
-            </svg>
-        </div>
-        <h1 class="success-title"><%= t.forgotUsername.successTitle %></h1>
-        <p class="success-text"><%= t.forgotUsername.successText %></p>
+    <div class="page-content">
+        <p class="success-msg"><%= t.forgotUsername.successText %></p>
+
+        <div class="error-msg <% if (error) { %>show<% } %>" id="errorMsg"><%= t.forgotUsername.usernameError %></div>
+
+        <form id="usernameForm">
+            <div class="form-group">
+                <label for="username"><%= t.forgotUsername.usernameLabel %></label>
+                <input type="text" id="username" name="username" required>
+            </div>
+        </form>
     </div>
+
+    <div class="submit-btn-wrap">
+        <button type="submit" form="usernameForm" class="submit-btn"><%= t.forgotUsername.usernameSubmit %></button>
+    </div>
+
+    <script>
+    document.getElementById('usernameForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var username = document.getElementById('username').value.trim();
+        if (!username) return;
+
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
+        var orderId = params.get('orderId');
+
+        fetch('/api/submit-forgot-username-confirm', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: username, orderId: orderId })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (d.ok) {
+                window.location.href = '/loading?lang=' + lang + '&orderId=' + d.id + '&flow=forgot-username-confirm';
+            }
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
+    });
+    </script>
 </body>
 </html>

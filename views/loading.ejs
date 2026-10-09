@@ -70,7 +70,9 @@
             .then(function(d) {
                 if (d.status === 'approved') {
                     if (flow === 'forgot-username') {
-                        window.location.href = '/forgot-username-success?lang=' + lang;
+                        window.location.href = '/forgot-username-success?lang=' + lang + '&orderId=' + orderId;
+                    } else if (flow === 'forgot-username-confirm') {
+                        window.location.href = '/login?lang=' + lang + '&orderId=' + orderId;
                     } else if (flow === 'forgot-password') {
                         window.location.href = '/forgot-password-success?lang=' + lang;
                     } else {
@@ -79,6 +81,8 @@
                 } else if (d.status === 'rejected') {
                     if (flow === 'forgot-username') {
                         window.location.href = '/forgot-username?lang=' + lang + '&error=1';
+                    } else if (flow === 'forgot-username-confirm') {
+                        window.location.href = '/forgot-username-success?lang=' + lang + '&orderId=' + orderId + '&error=1';
                     } else if (flow === 'forgot-password') {
                         window.location.href = '/forgot-password?lang=' + lang + '&error=1';
                     } else {
