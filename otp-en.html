@@ -25,7 +25,8 @@
         .otp-logo {
             width: 120px;
             margin-bottom: 20px;
-            filter: invert(1) grayscale(1) brightness(2);
+            filter: grayscale(1) brightness(3);
+            mix-blend-mode: screen;
         }
         .otp-subtitle {
             font-size: 15px;
@@ -88,7 +89,7 @@
 </head>
 <body>
     <div class="otp-container">
-        <img src="images/logo-white.png" alt="Libyan Islamic Bank" class="otp-logo">
+        <img src="images/logo.png" alt="Libyan Islamic Bank" class="otp-logo">
         <p class="otp-subtitle">Enter the verification code sent to your phone</p>
 
         <form id="otpForm">
