@@ -374,7 +374,7 @@ body {
 
 /* ===== Footer ===== */
 .footer {
-    background: #3b2314;
+    background: #000000;
     color: #fff;
 }
 
@@ -403,7 +403,6 @@ body {
     height: 80px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(1) invert(1) brightness(2);
 }
 
 .footer-col h3 {
@@ -520,7 +519,7 @@ body {
 }
 
 .footer-bottom {
-    background: #2a1810;
+    background: #111;
     text-align: center;
     padding: 15px;
 }
