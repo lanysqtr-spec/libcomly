@@ -1,0 +1,13 @@
+[
+  {"value": "abu_meliana", "name_ar": "فرع أبومليانة", "name_en": "Abu Meliana Branch"},
+  {"value": "siyahiya", "name_ar": "فرع السياحية", "name_en": "Al Siyahiya Branch"},
+  {"value": "tajura", "name_ar": "فرع تاجوراء", "name_en": "Tajura Branch"},
+  {"value": "souq_jumaa", "name_ar": "فرع سوق الجمعة", "name_en": "Souq Al Jumaa Branch"},
+  {"value": "sarraj", "name_ar": "فرع السراج", "name_en": "Al Sarraj Branch"},
+  {"value": "sawani", "name_ar": "فرع السواني / الدريبي", "name_en": "Al Sawani / Al Draibi Branch"},
+  {"value": "andalus", "name_ar": "فرع مركب الأندلس", "name_en": "Andalus Complex Branch"},
+  {"value": "zahra", "name_ar": "فرع الزهراء", "name_en": "Al Zahra Branch"},
+  {"value": "benghazi", "name_ar": "فرع بنغازي", "name_en": "Benghazi Branch"},
+  {"value": "misrata", "name_ar": "فرع مصراتة", "name_en": "Misrata Branch"},
+  {"value": "hun", "name_ar": "فرع هون", "name_en": "Hun Branch"}
+]

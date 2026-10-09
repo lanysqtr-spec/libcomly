@@ -1,0 +1,21 @@
+[
+  {"img": "images/watch1.jpg", "name_ar": "فضي", "name_en": "Silver"},
+  {"img": "images/watch2.jpg", "name_ar": "أسود", "name_en": "Black"},
+  {"img": "images/watch3.jpg", "name_ar": "أزرق داكن", "name_en": "Dark Blue"},
+  {"img": "images/watch4.jpg", "name_ar": "أصفر", "name_en": "Yellow"},
+  {"img": "images/watch5.jpg", "name_ar": "بيج", "name_en": "Beige"},
+  {"img": "images/watch6.jpg", "name_ar": "مرجاني", "name_en": "Coral"},
+  {"img": "images/watch7.jpg", "name_ar": "ذهبي", "name_en": "Gold"},
+  {"img": "images/watch8.jpg", "name_ar": "أزرق فاتح", "name_en": "Light Blue"},
+  {"img": "images/watch9.jpg", "name_ar": "بني", "name_en": "Brown"},
+  {"img": "images/watch10.jpg", "name_ar": "بيج فاتح", "name_en": "Light Beige"},
+  {"img": "images/watch11.jpg", "name_ar": "رمادي", "name_en": "Gray"},
+  {"img": "images/watch12.jpg", "name_ar": "أخضر", "name_en": "Green"},
+  {"img": "images/watch13.jpg", "name_ar": "برتقالي", "name_en": "Orange"},
+  {"img": "images/watch14.jpg", "name_ar": "كحلي", "name_en": "Navy"},
+  {"img": "images/watch15.jpg", "name_ar": "زيتي", "name_en": "Olive"},
+  {"img": "images/watch16.jpg", "name_ar": "أحمر", "name_en": "Red"},
+  {"img": "images/watch17.jpg", "name_ar": "أبيض", "name_en": "White"},
+  {"img": "images/watch18.jpg", "name_ar": "كحلي غامق", "name_en": "Dark Navy"},
+  {"img": "images/watch19.jpg", "name_ar": "أسود غامق", "name_en": "Jet Black"}
+]

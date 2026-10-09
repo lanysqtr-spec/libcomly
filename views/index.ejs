@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.bankName %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <% if (lang === 'ar') { %>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <% } else { %>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <% } %>
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <!-- Banner Slider -->
+    <section class="banner">
+        <div class="banner-track" id="bannerTrack">
+            <div class="banner-slide active"><img src="/images/banner1.jpg" alt="<%= t.bankName %>"></div>
+            <div class="banner-slide"><img src="/images/banner2.jpg" alt="<%= t.bankName %>"></div>
+            <div class="banner-slide"><img src="/images/banner3.jpg" alt="<%= t.bankName %>"></div>
+        </div>
+        <% if (lang === 'ar') { %>
+        <button class="banner-btn banner-prev" id="prevBtn">&#10095;</button>
+        <button class="banner-btn banner-next" id="nextBtn">&#10094;</button>
+        <% } else { %>
+        <button class="banner-btn banner-prev" id="prevBtn">&#10094;</button>
+        <button class="banner-btn banner-next" id="nextBtn">&#10095;</button>
+        <% } %>
+        <div class="banner-dots" id="bannerDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </section>
+
+    <!-- Awareness Section -->
+    <section class="awareness">
+        <h2><%= t.awareness.title %></h2>
+        <p><%= t.awareness.p1 %></p>
+        <p><%= t.awareness.p2 %></p>
+    </section>
+
+    <!-- Watches Section -->
+    <section class="watches" id="watches">
+        <div class="watches-grid" id="watchesGrid">
+            <% watches.forEach(function(w) { %>
+            <div class="watch-card">
+                <img class="watch-img" src="/<%= w.img %>" alt="<%= lang === 'ar' ? w.name_ar : w.name_en %>">
+                <div class="apple-warranty">
+                    <img src="/images/apple-logo.jpg" alt="Apple">
+                    <p><%= t.warranty %></p>
+                </div>
+                <div class="watch-features">
+                    <% t.features.forEach(function(f) { %>
+                    <div class="feature-item"><img src="/<%= f.img %>" alt="<%= f.text %>"><p><%= f.text %></p></div>
+                    <% }); %>
+                </div>
+                <div class="watch-info">
+                    <a href="/order?lang=<%= lang %>&watch=<%= encodeURIComponent(w.img) %>" class="watch-btn"><%= t.chooseWatch %></a>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>

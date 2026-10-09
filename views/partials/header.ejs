@@ -1,0 +1,19 @@
+<header class="header">
+    <div class="header-container">
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="logo">
+            <img src="/images/logo-white.png" alt="<%= t.bankName %>">
+        </div>
+        <a href="?lang=<%= lang === 'ar' ? 'en' : 'ar' %>" class="lang-toggle"><%= lang === 'ar' ? 'EN' : 'AR' %></a>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="/?lang=<%= lang %>"><%= t.nav.home %></a></li>
+            <li><a href="/?lang=<%= lang %>#watches"><%= t.nav.products %></a></li>
+            <li><a href="#"><%= t.nav.about %></a></li>
+            <li><a href="#"><%= t.nav.contact %></a></li>
+        </ul>
+    </nav>
+</header>

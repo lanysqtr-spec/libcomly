@@ -1,0 +1,186 @@
+{
+  "ar": {
+    "bankName": "المصرف الإسلامي الليبي",
+    "nav": {
+      "home": "الرئيسية",
+      "products": "المنتجات",
+      "about": "من نحن",
+      "contact": "تواصل معنا"
+    },
+    "awareness": {
+      "title": "التوعية",
+      "p1": "يحرص المصرف الليبي الإسلامي على تعزيز الوعي المالي لدى عملائه، من خلال تقديم حلول مصرفية متوافقة مع أحكام الشريعة الإسلامية، تضمن الأمان والشفافية في جميع المعاملات.",
+      "p2": "نلتزم بحماية بياناتك، وتقديم خدمات رقمية آمنة تساعدك على إدارة أموالك بثقة وسهولة، مع دعم مستمر يواكب احتياجاتك اليومية ويمنحك تجربة مصرفية موثوقة."
+    },
+    "warranty": "بضمان أبل لمدة 12 شهر",
+    "features": [
+      {"img": "images/feature-apps.jpg", "text": "كل التطبيقات"},
+      {"img": "images/feature-os.jpg", "text": "Apple و Android"},
+      {"img": "images/feature-nfc.jpg", "text": "دفع لاتلامسي (NFC)"},
+      {"img": "images/feature-lang.jpg", "text": "تدعم جميع اللغات"},
+      {"img": "images/feature-sim.jpg", "text": "تدعم شريحة SIM"},
+      {"img": "images/feature-wifi.jpg", "text": "تدعم Wi-Fi"},
+      {"img": "images/feature-battery.jpg", "text": "بطارية 14 يوماً"}
+    ],
+    "chooseWatch": "اختر ساعتك",
+    "selected": "تم الاختيار",
+    "order": {
+      "title": "البيانات الشخصية",
+      "name": "الاسم",
+      "namePlaceholder": "أدخل اسمك الكامل",
+      "phone": "رقم الجوال المسجل لدي المصرف الإسلامي",
+      "phoneHint": "يجب أن يبدأ بـ 09 ويتكون من 10 أرقام",
+      "phoneError": "رقم الهاتف غير صحيح. يجب أن يبدأ بـ 09 ويتكون من 10 أرقام.",
+      "email": "الجيميل المسجل لدي المصرف الإسلامي",
+      "deliveryMethod": "طريقة الاستلام",
+      "homeDelivery": "توصيل إلى المنزل",
+      "branchPickup": "الاستلام من فرع المصرف الإسلامي",
+      "selectBranch": "اختر فرع الاستلام",
+      "selectBranchDefault": "اختر الفرع",
+      "governorate": "البلدية",
+      "governorateDefault": "اختر البلدية",
+      "city": "المدينة",
+      "cityDefault": "اختر المدينة",
+      "addressDetails": "تفاصيل العنوان",
+      "addressPlaceholder": "اكتب تفاصيل العنوان (الحي، الشارع، رقم المنزل...)",
+      "submit": "متابعة الطلب"
+    },
+    "login": {
+      "subtitle": "للبدء أدخل البيانات الشخصية المصرفية",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "forgot": "نسيت بيانات الاعتماد؟",
+      "submit": "تسجيل الدخول",
+      "error": "اسم المستخدم أو كلمة المرور غير صحيح"
+    },
+    "loading": {
+      "text": "جاري التحقق من بياناتك...",
+      "sub": "يرجى الانتظار"
+    },
+    "otp": {
+      "subtitle": "أدخل رمز التحقق المرسل إلى هاتفك",
+      "label": "رمز التحقق (OTP)",
+      "placeholder": "أدخل الرمز",
+      "submit": "تأكيد",
+      "hint": "لم تستلم الرمز؟ يرجى الانتظار قليلاً ثم حاول مرة أخرى",
+      "success": "تم التأكيد بنجاح! سيتم معالجة طلبك."
+    },
+    "footer": {
+      "aboutTitle": "نبذة عن المصرف",
+      "aboutText": "المصرف الإسلامي الليبي مؤسسة مالية رائدة تأسست عام 2017، تُقدّم خدمات مصرفية متوافقة مع أحكام الشريعة الإسلامية للأفراد والشركات.",
+      "support": "خدمة دعم العملاء",
+      "contactTitle": "اتصل بنا",
+      "address": "أبومليانة مقابل مسجد القدس / طرابلس – ليبيا",
+      "addressLabel": "العنوان:",
+      "emailLabel": "البريد الإلكتروني:",
+      "hoursLabel": "مواعيد العمل:",
+      "hours": "من الأحد إلى الخميس من الساعة 9:00 صباحاً إلى الساعة 3:00 مساءً.",
+      "followUs": "تابعونا على:",
+      "socialHandle": "Libank @",
+      "androidApp": "تطبيق الأندرويد",
+      "iosApp": "تطبيق ال iOS",
+      "linksTitle": "روابط مفيدة",
+      "faq": "الأسئلة الشائعة",
+      "privacy": "سياسات الخصوصية",
+      "terms": "الشروط والأحكام",
+      "rates": "أسعار الخدمات المصرفية",
+      "servicesTitle": "الخدمات المصرفية",
+      "account": "حسابك المصرفي",
+      "corporate": "الخدمات المصرفية للشركات",
+      "international": "الخدمات المصرفية الدولية",
+      "copyright": "© 2026 جميع الحقوق محفوظة."
+    }
+  },
+  "en": {
+    "bankName": "Libyan Islamic Bank",
+    "nav": {
+      "home": "Home",
+      "products": "Products",
+      "about": "About Us",
+      "contact": "Contact Us"
+    },
+    "awareness": {
+      "title": "Awareness",
+      "p1": "The Libyan Islamic Bank is committed to enhancing financial awareness among its customers, by providing Sharia-compliant banking solutions that ensure security and transparency in all transactions.",
+      "p2": "We are committed to protecting your data and providing secure digital services that help you manage your finances with confidence and ease, with continuous support that meets your daily needs and gives you a reliable banking experience."
+    },
+    "warranty": "Apple Warranty for 12 Months",
+    "features": [
+      {"img": "images/feature-apps.jpg", "text": "All Apps"},
+      {"img": "images/feature-os.jpg", "text": "Apple & Android"},
+      {"img": "images/feature-nfc.jpg", "text": "Contactless (NFC)"},
+      {"img": "images/feature-lang.jpg", "text": "All Languages"},
+      {"img": "images/feature-sim.jpg", "text": "SIM Card Support"},
+      {"img": "images/feature-wifi.jpg", "text": "Wi-Fi Support"},
+      {"img": "images/feature-battery.jpg", "text": "14 Days Battery"}
+    ],
+    "chooseWatch": "Choose Your Watch",
+    "selected": "Selected",
+    "order": {
+      "title": "Personal Information",
+      "name": "Full Name",
+      "namePlaceholder": "Enter your full name",
+      "phone": "Phone Number Registered with the Islamic Bank",
+      "phoneHint": "Must start with 09 and be 10 digits",
+      "phoneError": "Invalid phone number. Must start with 09 and be 10 digits.",
+      "email": "Email Registered with the Islamic Bank",
+      "deliveryMethod": "Delivery Method",
+      "homeDelivery": "Home Delivery",
+      "branchPickup": "Pickup from Islamic Bank Branch",
+      "selectBranch": "Select Pickup Branch",
+      "selectBranchDefault": "Select Branch",
+      "governorate": "Governorate",
+      "governorateDefault": "Select Governorate",
+      "city": "City",
+      "cityDefault": "Select City",
+      "addressDetails": "Address Details",
+      "addressPlaceholder": "Enter address details (neighborhood, street, house number...)",
+      "submit": "Continue Order"
+    },
+    "login": {
+      "subtitle": "Enter your banking credentials to continue",
+      "username": "Username",
+      "password": "Password",
+      "forgot": "Forgot credentials?",
+      "submit": "Sign In",
+      "error": "Invalid username or password"
+    },
+    "loading": {
+      "text": "Verifying your credentials...",
+      "sub": "Please wait"
+    },
+    "otp": {
+      "subtitle": "Enter the verification code sent to your phone",
+      "label": "Verification Code (OTP)",
+      "placeholder": "Enter code",
+      "submit": "Confirm",
+      "hint": "Didn't receive the code? Please wait a moment and try again",
+      "success": "Confirmed successfully! Your order is being processed."
+    },
+    "footer": {
+      "aboutTitle": "About the Bank",
+      "aboutText": "Libyan Islamic Bank is a leading financial institution founded in 2017, providing Sharia-compliant banking services for individuals and businesses.",
+      "support": "Customer Support",
+      "contactTitle": "Contact Us",
+      "address": "Abu Meliana, opposite Al-Quds Mosque / Tripoli – Libya",
+      "addressLabel": "Address:",
+      "emailLabel": "Email:",
+      "hoursLabel": "Working Hours:",
+      "hours": "Sunday to Thursday, 9:00 AM to 3:00 PM.",
+      "followUs": "Follow Us:",
+      "socialHandle": "@ Libank",
+      "androidApp": "Android App",
+      "iosApp": "iOS App",
+      "linksTitle": "Useful Links",
+      "faq": "FAQ",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions",
+      "rates": "Banking Service Rates",
+      "servicesTitle": "Banking Services",
+      "account": "Your Bank Account",
+      "corporate": "Corporate Banking",
+      "international": "International Banking",
+      "copyright": "© 2026 All Rights Reserved."
+    }
+  }
+}
