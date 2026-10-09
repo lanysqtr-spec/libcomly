@@ -76,6 +76,58 @@
                     <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
                 </div>
 
+                <div class="form-group">
+                    <label>Delivery Method</label>
+                    <div class="delivery-options">
+                        <label class="radio-option">
+                            <input type="radio" name="delivery" value="home" id="deliveryHome">
+                            <span>Home Delivery</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="delivery" value="branch" id="deliveryBranch" checked>
+                            <span>Pickup from Bank Branch</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="addressFields" class="address-fields" style="display:none;">
+                    <div class="form-group">
+                        <label for="governorate">Governorate</label>
+                        <select id="governorate" name="governorate">
+                            <option value="">Select Governorate</option>
+                            <option value="tripoli">Tripoli</option>
+                            <option value="benghazi">Benghazi</option>
+                            <option value="misrata">Misrata</option>
+                            <option value="zawiya">Zawiya</option>
+                            <option value="jafara">Jafara</option>
+                            <option value="murqub">Murqub</option>
+                            <option value="zliten">Zliten</option>
+                            <option value="sirte">Sirte</option>
+                            <option value="sabha">Sabha</option>
+                            <option value="jabal_gharbi">Western Mountain</option>
+                            <option value="jabal_akhdar">Green Mountain</option>
+                            <option value="marj">Marj</option>
+                            <option value="derna">Derna</option>
+                            <option value="jufra">Jufra</option>
+                            <option value="murzuq">Murzuq</option>
+                            <option value="ubari">Ubari</option>
+                            <option value="wadi_shati">Wadi Al Shati</option>
+                            <option value="ghat">Ghat</option>
+                            <option value="nalut">Nalut</option>
+                            <option value="nuqat_khams">Nuqat Al Khams</option>
+                            <option value="kufra">Kufra</option>
+                            <option value="sabrata">Sabratha &amp; Sorman</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <select id="city" name="city">
+                            <option value="">Select City</option>
+                        </select>
+                    </div>
+                </div>
+
                 <button type="submit" class="order-btn">Continue Order</button>
             </form>
         </div>
@@ -153,6 +205,58 @@
     document.getElementById('hamburger').addEventListener('click', function() {
         this.classList.toggle('active');
         document.getElementById('mobileNav').classList.toggle('open');
+    });
+
+    const cities = {
+        tripoli: ['Tripoli Center','Tajoura','Abu Salim','Ain Zara','Souq Al Juma','Hay Al Andalus','Janzour','Qasr Bin Ghashir'],
+        benghazi: ['Benghazi Center','Al Hawari','Gmines','Soluq','Al Abyar','Tokra','Al Aqouriya'],
+        misrata: ['Misrata','Tawergha','Bani Walid','Abu Grain'],
+        zawiya: ['Zawiya','Sorman','Al Ajaylat'],
+        jafara: ['Al Sawani','Al Aziziya','Janzour','Al Gurabuli'],
+        murqub: ['Al Khums','Msallata','Qasr Al Akhyar','Al Gurabuli'],
+        zliten: ['Zliten'],
+        sirte: ['Sirte','Jufra','Harawa'],
+        sabha: ['Sabha','Al Gardha','Bint Baya','Al Garda'],
+        jabal_gharbi: ['Gharyan','Yefren','Zintan','Jado','Al Rajban','Kikla','Al Asaba'],
+        jabal_akhdar: ['Al Bayda','Shahat','Soussa','Al Qubba','Al Massa'],
+        marj: ['Al Marj','Al Abraq','Darsiya','Tokra'],
+        derna: ['Derna','Al Fatayih','Al Hisha'],
+        jufra: ['Hun','Waddan','Sokna'],
+        murzuq: ['Murzuq','Al Qatrun','Um Al Aranib','Traghen'],
+        ubari: ['Ubari','Al Gargaf','Al Awainat'],
+        wadi_shati: ['Brak Al Shati','Idri','Al Gurd'],
+        ghat: ['Ghat','Al Awainat','Tanalkom'],
+        nalut: ['Nalut','Kabaw','Darj','Wazin'],
+        nuqat_khams: ['Zwara','Al Jameel','Rigdaleen','Al Ajaylat'],
+        kufra: ['Kufra','Tazirbu','Rabyana'],
+        sabrata: ['Sabratha','Sorman','Al Ajaylat']
+    };
+
+    const deliveryHome = document.getElementById('deliveryHome');
+    const deliveryBranch = document.getElementById('deliveryBranch');
+    const addressFields = document.getElementById('addressFields');
+    const governorate = document.getElementById('governorate');
+    const city = document.getElementById('city');
+
+    deliveryHome.addEventListener('change', function() {
+        addressFields.style.display = 'flex';
+    });
+
+    deliveryBranch.addEventListener('change', function() {
+        addressFields.style.display = 'none';
+    });
+
+    governorate.addEventListener('change', function() {
+        city.innerHTML = '<option value="">Select City</option>';
+        const selected = this.value;
+        if (selected && cities[selected]) {
+            cities[selected].forEach(function(c) {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                city.appendChild(opt);
+            });
+        }
     });
 
     document.getElementById('orderForm').addEventListener('submit', function(e) {

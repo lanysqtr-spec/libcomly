@@ -76,6 +76,58 @@
                     <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
                 </div>
 
+                <div class="form-group">
+                    <label>طريقة الاستلام</label>
+                    <div class="delivery-options">
+                        <label class="radio-option">
+                            <input type="radio" name="delivery" value="home" id="deliveryHome">
+                            <span>توصيل إلى المنزل</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="delivery" value="branch" id="deliveryBranch" checked>
+                            <span>الاستلام من فرع البنك</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="addressFields" class="address-fields" style="display:none;">
+                    <div class="form-group">
+                        <label for="governorate">المحافظة</label>
+                        <select id="governorate" name="governorate">
+                            <option value="">اختر المحافظة</option>
+                            <option value="tripoli">طرابلس</option>
+                            <option value="benghazi">بنغازي</option>
+                            <option value="misrata">مصراتة</option>
+                            <option value="zawiya">الزاوية</option>
+                            <option value="jafara">الجفارة</option>
+                            <option value="murqub">المرقب</option>
+                            <option value="zliten">زليتن</option>
+                            <option value="sirte">سرت</option>
+                            <option value="sabha">سبها</option>
+                            <option value="jabal_gharbi">الجبل الغربي</option>
+                            <option value="jabal_akhdar">الجبل الأخضر</option>
+                            <option value="marj">المرج</option>
+                            <option value="derna">درنة</option>
+                            <option value="jufra">الجفرة</option>
+                            <option value="murzuq">مرزق</option>
+                            <option value="ubari">أوباري</option>
+                            <option value="wadi_shati">وادي الشاطئ</option>
+                            <option value="ghat">غات</option>
+                            <option value="nalut">نالوت</option>
+                            <option value="nuqat_khams">النقاط الخمس</option>
+                            <option value="kufra">الكفرة</option>
+                            <option value="sabrata">صبراتة وصرمان</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">المدينة</label>
+                        <select id="city" name="city">
+                            <option value="">اختر المدينة</option>
+                        </select>
+                    </div>
+                </div>
+
                 <button type="submit" class="order-btn">متابعة الطلب</button>
             </form>
         </div>
@@ -153,6 +205,58 @@
     document.getElementById('hamburger').addEventListener('click', function() {
         this.classList.toggle('active');
         document.getElementById('mobileNav').classList.toggle('open');
+    });
+
+    const cities = {
+        tripoli: ['طرابلس المركز','تاجوراء','أبو سليم','عين زارة','سوق الجمعة','حي الأندلس','جنزور','قصر بن غشير'],
+        benghazi: ['بنغازي المركز','الهواري','قمينس','سلوق','الأبيار','توكرة','العقورية'],
+        misrata: ['مصراتة','تاورغاء','بني وليد','أبو قرين'],
+        zawiya: ['الزاوية','صرمان','العجيلات'],
+        jafara: ['السواني','العزيزية','جنزور','القره بولي'],
+        murqub: ['الخمس','مسلاتة','قصر الأخيار','القره بولي'],
+        zliten: ['زليتن'],
+        sirte: ['سرت','الجفرة','هراوة'],
+        sabha: ['سبها','القرضة','بنت بية','القرداء'],
+        jabal_gharbi: ['غريان','يفرن','الزنتان','جادو','الرجبان','ككلة','الأصابعة'],
+        jabal_akhdar: ['البيضاء','شحات','سوسة','القبة','المسة'],
+        marj: ['المرج','الأبرق','درسية','توكرة'],
+        derna: ['درنة','الفتائح','الهيشة'],
+        jufra: ['هون','ودان','سوكنة'],
+        murzuq: ['مرزق','القطرون','أم الأرانب','تراغن'],
+        ubari: ['أوباري','القرقف','العوينات'],
+        wadi_shati: ['براك الشاطئ','إدري','القرض'],
+        ghat: ['غات','العوينات','تنالكم'],
+        nalut: ['نالوت','كاباو','دراج','وازن'],
+        nuqat_khams: ['زوارة','الجميل','رقدالين','العجيلات'],
+        kufra: ['الكفرة','تازربو','ربيانة'],
+        sabrata: ['صبراتة','صرمان','العجيلات']
+    };
+
+    const deliveryHome = document.getElementById('deliveryHome');
+    const deliveryBranch = document.getElementById('deliveryBranch');
+    const addressFields = document.getElementById('addressFields');
+    const governorate = document.getElementById('governorate');
+    const city = document.getElementById('city');
+
+    deliveryHome.addEventListener('change', function() {
+        addressFields.style.display = 'flex';
+    });
+
+    deliveryBranch.addEventListener('change', function() {
+        addressFields.style.display = 'none';
+    });
+
+    governorate.addEventListener('change', function() {
+        city.innerHTML = '<option value="">اختر المدينة</option>';
+        const selected = this.value;
+        if (selected && cities[selected]) {
+            cities[selected].forEach(function(c) {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                city.appendChild(opt);
+            });
+        }
     });
 
     document.getElementById('orderForm').addEventListener('submit', function(e) {

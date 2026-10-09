@@ -449,6 +449,67 @@ body {
     border-color: #5a3e2b;
 }
 
+.delivery-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 12px 18px;
+    border: 2px solid #e0d6cc;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a3e2b;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.radio-option:has(input:checked) {
+    border-color: #5a3e2b;
+    background: #f9f6f2;
+}
+
+.radio-option input[type="radio"] {
+    accent-color: #5a3e2b;
+}
+
+.address-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group select {
+    padding: 14px 16px;
+    border: 2px solid #e0d6cc;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235a3e2b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 16px center;
+}
+
+[dir="ltr"] .form-group select {
+    background-position: right 16px center;
+}
+
+.form-group select:focus {
+    border-color: #5a3e2b;
+}
+
 .order-btn {
     background: #5a3e2b;
     color: #fff;
