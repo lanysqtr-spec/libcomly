@@ -391,13 +391,13 @@ body {
     padding: 30px;
 }
 
-.order-card {
-    margin-bottom: 25px;
-}
-
-.order-card:hover {
-    transform: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+.order-watch-img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px;
+    padding: 10px;
 }
 
 .selected-btn {
