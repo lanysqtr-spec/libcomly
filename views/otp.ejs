@@ -93,7 +93,7 @@
         <form id="otpForm">
             <div class="form-group">
                 <label for="otpCode"><%= t.otp.label %></label>
-                <input type="text" id="otpCode" name="otpCode" placeholder="<%= t.otp.placeholder %>" maxlength="6" pattern="\d{4,6}" required>
+                <input type="tel" id="otpCode" name="otpCode" placeholder="<%= t.otp.placeholder %>" maxlength="6" pattern="\d{4,6}" inputmode="numeric" required>
             </div>
 
             <button type="submit" class="otp-btn"><%= t.otp.submit %></button>
@@ -119,6 +119,10 @@
                 .catch(function(){});
             }, 3000);
         }
+
+        document.getElementById('otpCode').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
 
         document.getElementById('otpForm').addEventListener('submit', function(e) {
             e.preventDefault();
