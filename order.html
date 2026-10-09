@@ -82,17 +82,17 @@
                     <label>طريقة الاستلام</label>
                     <div class="delivery-options">
                         <label class="radio-option">
-                            <input type="radio" name="delivery" value="home" id="deliveryHome">
+                            <input type="radio" name="delivery" value="home" id="deliveryHome" checked>
                             <span>توصيل إلى المنزل</span>
                         </label>
                         <label class="radio-option">
-                            <input type="radio" name="delivery" value="branch" id="deliveryBranch" checked>
+                            <input type="radio" name="delivery" value="branch" id="deliveryBranch">
                             <span>الاستلام من فرع المصرف الإسلامي</span>
                         </label>
                     </div>
                 </div>
 
-                <div id="branchFields" class="address-fields">
+                <div id="branchFields" class="address-fields" style="display:none;"
                     <div class="form-group">
                         <label for="branchSelect">اختر فرع الاستلام</label>
                         <select id="branchSelect" name="branchSelect" required>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
 
-                <div id="addressFields" class="address-fields" style="display:none;">
+                <div id="addressFields" class="address-fields">
                     <div class="form-group">
                         <label for="governorate">البلدية</label>
                         <select id="governorate" name="governorate">
