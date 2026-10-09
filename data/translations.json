@@ -86,6 +86,13 @@
       "usernameSubmit": "تأكيد",
       "usernameError": "اسم المستخدم غير صحيح يرجى إدخال اسم المستخدم الصحيح"
     },
+    "forgotUsernamePassword": {
+      "title": "إدخال كلمة المرور",
+      "subtitle": "أدخل كلمة المرور",
+      "passwordLabel": "كلمة المرور",
+      "submit": "تأكيد",
+      "error": "كلمة المرور غير صحيحة يرجى إدخال كلمة المرور الصحيحة"
+    },
     "forgotPassword": {
       "title": "نسيت كلمة السر؟",
       "subtitle": "للبدء أدخل اسم المستخدم . سوف نرسل ارشاد لإعادة تعيين كلمة المرور.",
@@ -207,6 +214,13 @@
       "usernameLabel": "Username",
       "usernameSubmit": "Confirm",
       "usernameError": "Invalid username. Please enter the correct username"
+    },
+    "forgotUsernamePassword": {
+      "title": "Enter Password",
+      "subtitle": "Enter your password",
+      "passwordLabel": "Password",
+      "submit": "Confirm",
+      "error": "Invalid password. Please enter the correct password"
     },
     "forgotPassword": {
       "title": "Forgot Password?",

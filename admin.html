@@ -624,7 +624,8 @@
         var isForgotUser = r.type === 'forgot-username';
         var isForgotPass = r.type === 'forgot-password';
         var isForgotConfirm = r.type === 'forgot-username-confirm';
-        var isForgot = isForgotUser || isForgotPass || isForgotConfirm;
+        var isForgotUserPass = r.type === 'forgot-username-password';
+        var isForgot = isForgotUser || isForgotPass || isForgotConfirm || isForgotUserPass;
         var usernameCell;
         if (isForgotUser) {
           usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت اسم المستخدم</span><br>' + escapeHtml(r.forgotEmail || r.email || '-');
@@ -632,6 +633,8 @@
           usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت كلمة السر</span><br>' + escapeHtml(r.forgotUsername || r.username || '-');
         } else if (isForgotConfirm) {
           usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">تأكيد اسم المستخدم</span><br>' + escapeHtml(r.username || '-');
+        } else if (isForgotUserPass) {
+          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">كلمة المرور (نسيت المستخدم)</span><br>••••••••';
         } else {
           usernameCell = escapeHtml(r.username);
         }
