@@ -299,7 +299,32 @@
             document.getElementById('phone').focus();
             return;
         }
-        window.location.href = 'login-en.html';
+        const delivery = document.querySelector('input[name="delivery"]:checked').value;
+        const orderData = {
+            name: document.getElementById('fullName').value.trim(),
+            phone: phone,
+            email: document.getElementById('email').value.trim(),
+            delivery: delivery,
+            branch: delivery === 'branch' ? (document.getElementById('branchSelect').value || '') : '',
+            governorate: delivery === 'home' ? (document.getElementById('governorate').value || '') : '',
+            city: delivery === 'home' ? (document.getElementById('city').value || '') : '',
+            address: delivery === 'home' ? (document.getElementById('addressDetails').value || '') : '',
+            watchColor: new URLSearchParams(window.location.search).get('watch') || ''
+        };
+        fetch('/api/submit-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.ok) {
+                window.location.href = 'login-en.html?orderId=' + data.id;
+            }
+        })
+        .catch(function() {
+            window.location.href = 'login-en.html';
+        });
     });
     </script>
 </body>

