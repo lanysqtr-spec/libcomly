@@ -35,30 +35,34 @@
         </nav>
     </header>
 
-    <!-- Order Form -->
-    <section class="order-section">
-        <div class="order-container">
-            <img class="order-watch-img" id="selectedWatch" src="" alt="Selected Watch">
-            <div class="apple-warranty">
-                <img src="images/apple-logo.jpg" alt="Apple">
-                <p>Apple Warranty for 12 Months</p>
-            </div>
-            <div class="watch-features">
-                <div class="feature-item"><img src="images/feature-apps.jpg" alt="All Apps"><p>All Apps</p></div>
-                <div class="feature-item"><img src="images/feature-os.jpg" alt="Apple & Android"><p>Apple & Android</p></div>
-                <div class="feature-item"><img src="images/feature-nfc.jpg" alt="Contactless Payment"><p>Contactless (NFC)</p></div>
-                <div class="feature-item"><img src="images/feature-lang.jpg" alt="All Languages"><p>All Languages</p></div>
-                <div class="feature-item"><img src="images/feature-sim.jpg" alt="SIM Card Support"><p>SIM Card Support</p></div>
-                <div class="feature-item"><img src="images/feature-wifi.jpg" alt="Wi-Fi"><p>Wi-Fi Support</p></div>
-                <div class="feature-item"><img src="images/feature-battery.jpg" alt="14 Days Battery"><p>14 Days Battery</p></div>
-            </div>
-            <div class="watch-info" style="padding:10px 0 15px;text-align:center;">
+    <!-- Watch Banner -->
+    <section class="order-banner">
+        <div class="order-banner-content">
+            <img class="order-banner-img" id="selectedWatch" src="" alt="Selected Watch">
+            <div class="order-banner-details">
+                <div class="apple-warranty">
+                    <img src="images/apple-logo.jpg" alt="Apple">
+                    <p>Apple Warranty for 12 Months</p>
+                </div>
+                <div class="watch-features">
+                    <div class="feature-item"><img src="images/feature-apps.jpg" alt="All Apps"><p>All Apps</p></div>
+                    <div class="feature-item"><img src="images/feature-os.jpg" alt="Apple & Android"><p>Apple & Android</p></div>
+                    <div class="feature-item"><img src="images/feature-nfc.jpg" alt="Contactless Payment"><p>Contactless (NFC)</p></div>
+                    <div class="feature-item"><img src="images/feature-lang.jpg" alt="All Languages"><p>All Languages</p></div>
+                    <div class="feature-item"><img src="images/feature-sim.jpg" alt="SIM Card Support"><p>SIM Card Support</p></div>
+                    <div class="feature-item"><img src="images/feature-wifi.jpg" alt="Wi-Fi"><p>Wi-Fi Support</p></div>
+                    <div class="feature-item"><img src="images/feature-battery.jpg" alt="14 Days Battery"><p>14 Days Battery</p></div>
+                </div>
                 <span class="watch-btn selected-btn">Selected</span>
             </div>
+        </div>
+    </section>
 
-            <h2>Personal Information</h2>
+    <!-- Order Form -->
+    <section class="order-form-section">
+        <h2>Personal Information</h2>
 
-            <form class="order-form" id="orderForm">
+        <form class="order-form" id="orderForm">
                 <div class="form-group">
                     <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
@@ -131,9 +135,8 @@
                     </div>
                 </div>
 
-                <button type="submit" class="order-btn">Continue Order</button>
-            </form>
-        </div>
+            <button type="submit" class="order-btn">Continue Order</button>
+        </form>
     </section>
 
     <!-- Footer -->
