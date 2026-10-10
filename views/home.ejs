@@ -131,10 +131,10 @@
             margin-bottom: 25px;
         }
         .cards-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 16px;
-            max-width: 500px;
+            max-width: 440px;
             margin: 0 auto;
         }
         .intl-card {
@@ -186,6 +186,24 @@
             color: #c8a45a;
             font-weight: 700;
             flex-shrink: 0;
+        }
+        .intl-card-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #c8a45a;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            border: none;
+            border-radius: 0 0 16px 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+        .intl-card-btn:hover {
+            background: #b8923e;
         }
     </style>
 </head>
@@ -263,6 +281,7 @@
                         <li>تجربة تسوق راقية وخدمات مميزة</li>
                     </ul>
                 </div>
+                <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-business')">اطلب الآن</a>
             </div>
             <div class="intl-card">
                 <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Travel-1.avif" alt="بطاقة ليبنك ترافل">
@@ -276,6 +295,7 @@
                         <li>مثالية للسفر والاستخدام اليومي</li>
                     </ul>
                 </div>
+                <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-travel')">اطلب الآن</a>
             </div>
             <div class="intl-card">
                 <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-1.avif" alt="بطاقة وورلد إيليت">
@@ -289,6 +309,7 @@
                         <li>قبول عالمي في أكثر من 200 دولة</li>
                     </ul>
                 </div>
+                <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('world-elite')">اطلب الآن</a>
             </div>
             <div class="intl-card">
                 <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-copy.avif" alt="بطاقة ليبنك كوربرت">
@@ -302,6 +323,7 @@
                         <li>تسهيل المعاملات التجارية والدفع الخارجي</li>
                     </ul>
                 </div>
+                <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-corporate')">اطلب الآن</a>
             </div>
         </div>
     </div>
