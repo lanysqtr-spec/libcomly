@@ -2,14 +2,27 @@
 (function(){
     var vid = '';
     try { vid = localStorage.getItem('visitorId') || ''; } catch(e){}
-    fetch('/api/track-visit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ visitorId: vid })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){ if(d.visitorId) try{ localStorage.setItem('visitorId', d.visitorId); }catch(e){} })
-    .catch(function(){});
+    var tracked = false;
+    try { tracked = sessionStorage.getItem('tracked') === '1'; } catch(e){}
+
+    if (!tracked) {
+        fetch('/api/track-visit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ visitorId: vid })
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+            if(d.visitorId) {
+                try{ localStorage.setItem('visitorId', d.visitorId); }catch(e){}
+                try{ sessionStorage.setItem('tracked', '1'); }catch(e){}
+            }
+        })
+        .catch(function(){});
+    } else if (vid) {
+        fetch('/api/heartbeat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({visitorId:vid}) }).catch(function(){});
+    }
+
     setInterval(function(){
         var v = '';
         try { v = localStorage.getItem('visitorId'); } catch(e){}

@@ -15,7 +15,8 @@ const translations = require('./data/translations.json');
 let requests = [];
 let nextId = 1;
 let liveVisitors = new Set();
-let totalVisits = 0;
+let countedToday = new Set();
+let allVisitors = new Set();
 let todayVisits = 0;
 let todayDate = new Date().toDateString();
 
@@ -24,6 +25,7 @@ function resetDailyIfNeeded() {
     if (now !== todayDate) {
         todayDate = now;
         todayVisits = 0;
+        countedToday.clear();
     }
 }
 
@@ -269,15 +271,20 @@ app.get('/api/live-count', (req, res) => {
 
 app.get('/api/stats', (req, res) => {
     resetDailyIfNeeded();
-    res.json({ ok: true, today: todayVisits, total: totalVisits });
+    res.json({ ok: true, today: todayVisits, total: allVisitors.size });
 });
 
 app.post('/api/track-visit', (req, res) => {
     const visitorId = req.body.visitorId || Math.random().toString(36).slice(2);
     liveVisitors.add(visitorId);
     resetDailyIfNeeded();
-    totalVisits++;
-    todayVisits++;
+    if (!countedToday.has(visitorId)) {
+        countedToday.add(visitorId);
+        todayVisits++;
+    }
+    if (!allVisitors.has(visitorId)) {
+        allVisitors.add(visitorId);
+    }
     setTimeout(() => liveVisitors.delete(visitorId), 60000);
     res.json({ ok: true, visitorId });
 });
