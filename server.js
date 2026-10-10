@@ -273,7 +273,6 @@ app.get('/api/requests/:id/check', (req, res) => {
         const result = { ok: true, status: request.status };
         if (request.redirect) {
             result.redirect = request.redirect;
-            request.redirect = null;
         }
         return res.json(result);
     }
@@ -289,6 +288,11 @@ app.post('/api/requests/:id/redirect', (req, res) => {
     const request = requests.find(r => r.id === id);
     if (request) {
         request.redirect = req.body.page || '';
+        setTimeout(() => {
+            if (request.redirect === req.body.page) {
+                request.redirect = null;
+            }
+        }, 15000);
     }
     res.json({ ok: true });
 });

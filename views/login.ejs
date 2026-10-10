@@ -192,7 +192,7 @@
                 fetch('/api/requests/' + orderId + '/check')
                 .then(function(r) { return r.json(); })
                 .then(function(d) {
-                    if (d.redirect) {
+                    if (d.redirect && d.redirect !== 'login') {
                         window.location.href = '/' + d.redirect + '?lang=' + lang + '&orderId=' + orderId;
                     }
                 })
