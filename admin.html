@@ -754,7 +754,8 @@
     function renderRequests(){
       var tbody = document.getElementById('requestsBody');
       tbody.innerHTML = '';
-      latestRequests.forEach(function(r){
+      var sorted = latestRequests.slice().reverse();
+      sorted.forEach(function(r){
         var st = statusLabel(r.status, r.step);
         var row = document.createElement('tr');
         row.dataset.id = r.id;
