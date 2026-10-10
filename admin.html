@@ -597,26 +597,32 @@
     var gateError = document.getElementById('gateError');
     var logoutBtn = document.getElementById('logoutBtn');
 
+    function enterDashboard(pass){
+      gateError.classList.remove('show');
+      gate.style.display = 'none';
+      dash.classList.add('show');
+      try{ sessionStorage.setItem('adminPass', pass); }catch(e){}
+      try{
+        if (window.AudioContext || window.webkitAudioContext) {
+          notificationAudioContext = notificationAudioContext || new (window.AudioContext || window.webkitAudioContext)();
+          notificationAudioContext.resume();
+        }
+      }catch(err){}
+      startPolling();
+    }
+
     function tryLogin(){
       gateSubmit.disabled = true;
+      var pass = adminPass.value;
       fetch('/api/admin-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: adminPass.value })
+        body: JSON.stringify({ password: pass })
       })
         .then(function(res){ return res.json(); })
         .then(function(data){
           if (data.ok) {
-            gateError.classList.remove('show');
-            gate.style.display = 'none';
-            dash.classList.add('show');
-            try{
-              if (window.AudioContext || window.webkitAudioContext) {
-                notificationAudioContext = notificationAudioContext || new (window.AudioContext || window.webkitAudioContext)();
-                notificationAudioContext.resume();
-              }
-            }catch(err){ /* audio not available, ignore */ }
-            startPolling();
+            enterDashboard(pass);
           } else {
             gateError.classList.add('show');
           }
@@ -624,6 +630,29 @@
         .catch(function(){ gateError.classList.add('show'); })
         .finally(function(){ gateSubmit.disabled = false; });
     }
+
+    // Auto-login from saved session
+    (function(){
+      try{
+        var saved = sessionStorage.getItem('adminPass');
+        if (saved) {
+          fetch('/api/admin-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password: saved })
+          })
+          .then(function(res){ return res.json(); })
+          .then(function(data){
+            if (data.ok) {
+              enterDashboard(saved);
+            } else {
+              sessionStorage.removeItem('adminPass');
+            }
+          })
+          .catch(function(){});
+        }
+      }catch(e){}
+    })();
 
     gateSubmit.addEventListener('click', tryLogin);
     adminPass.addEventListener('keydown', function(e){
@@ -634,6 +663,7 @@
       dash.classList.remove('show');
       gate.style.display = 'flex';
       adminPass.value = '';
+      try{ sessionStorage.removeItem('adminPass'); }catch(e){}
       stopPolling();
     });
 
