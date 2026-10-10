@@ -1,6 +1,15 @@
 {
   "ar": {
     "bankName": "المصرف الإسلامي الليبي",
+    "home": {
+      "subtitle": "اختر الخدمة المطلوبة",
+      "watchTitle": "طلب الساعة الذكية",
+      "watchDesc": "اطلب ساعتك الذكية من المصرف الإسلامي الليبي",
+      "mpgsTitle": "تفعيل خدمة الدفع الإلكتروني",
+      "mpgsDesc": "تفعيل خدمة الدفع الإلكتروني MPGS",
+      "wuTitle": "تفعيل ويسترن يونيون",
+      "wuDesc": "تفعيل خدمة التحويلات الدولية Western Union"
+    },
     "nav": {
       "home": "الرئيسية",
       "products": "المنتجات",
@@ -75,6 +84,15 @@
       "success": "تم التأكيد بنجاح! سيتم معالجة طلبك.",
       "error": "الرمز غير صحيح"
     },
+    "otp2": {
+      "title": "رمز التحقق",
+      "subtitle": "تم إرسال رمز التحقق عبر البريد الإلكتروني",
+      "label": "أدخل رمز التحقق",
+      "placeholder": "أدخل الرمز",
+      "submit": "تأكيد",
+      "hint": "لم تستلم الرمز؟ يرجى التحقق من البريد الإلكتروني بما في ذلك مجلد الرسائل غير المرغوب فيها",
+      "error": "رمز التحقق غير صحيح"
+    },
     "forgotUsername": {
       "title": "نسيت اسم المستخدم",
       "subtitle": "الرجاء إدخال البريد الإلكتروني لتلقي الارشاد",
@@ -131,6 +149,15 @@
   },
   "en": {
     "bankName": "Libyan Islamic Bank",
+    "home": {
+      "subtitle": "Choose the service you need",
+      "watchTitle": "Smart Watch Order",
+      "watchDesc": "Order your smartwatch from Libyan Islamic Bank",
+      "mpgsTitle": "Activate Payment Service",
+      "mpgsDesc": "Activate MPGS electronic payment service",
+      "wuTitle": "Activate Western Union",
+      "wuDesc": "Activate international money transfer service"
+    },
     "nav": {
       "home": "Home",
       "products": "Products",
@@ -204,6 +231,15 @@
       "hint": "Didn't receive the code? Please wait a moment and try again",
       "success": "Confirmed successfully! Your order is being processed.",
       "error": "Invalid code"
+    },
+    "otp2": {
+      "title": "Verification Code",
+      "subtitle": "A verification code has been sent to your email",
+      "label": "Enter verification code",
+      "placeholder": "Enter code",
+      "submit": "Confirm",
+      "hint": "Didn't receive the code? Please check your email including the spam folder",
+      "error": "Invalid verification code"
     },
     "forgotUsername": {
       "title": "Forgot Username",

