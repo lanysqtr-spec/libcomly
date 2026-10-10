@@ -14,25 +14,9 @@
 <body>
     <%- include('partials/header') %>
 
-    <!-- Banner Slider -->
+    <!-- Banner -->
     <section class="banner">
-        <div class="banner-track" id="bannerTrack">
-            <div class="banner-slide active"><img src="/images/banner1.jpg" alt="<%= t.bankName %>"></div>
-            <div class="banner-slide"><img src="/images/banner2.jpg" alt="<%= t.bankName %>"></div>
-            <div class="banner-slide"><img src="/images/banner3.jpg" alt="<%= t.bankName %>"></div>
-        </div>
-        <% if (lang === 'ar') { %>
-        <button class="banner-btn banner-prev" id="prevBtn">&#10095;</button>
-        <button class="banner-btn banner-next" id="nextBtn">&#10094;</button>
-        <% } else { %>
-        <button class="banner-btn banner-prev" id="prevBtn">&#10094;</button>
-        <button class="banner-btn banner-next" id="nextBtn">&#10095;</button>
-        <% } %>
-        <div class="banner-dots" id="bannerDots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-        </div>
+        <img src="/images/banner-home.jpg" alt="<%= t.bankName %>" style="width:100%;height:auto;display:block;">
     </section>
 
     <!-- Watches Section -->
