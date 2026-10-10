@@ -118,6 +118,51 @@
         [dir="rtl"] .service-arrow {
             transform: scaleX(-1);
         }
+
+        .cards-section {
+            padding: 30px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cards-section-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #5a3e2b;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .cards-grid {
+            width: 100%;
+            max-width: 440px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .intl-card {
+            background: #fff;
+            border: 2px solid #e8e0d5;
+            border-radius: 16px;
+            overflow: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .intl-card:hover {
+            border-color: #c8a45a;
+            box-shadow: 0 6px 20px rgba(200, 164, 90, 0.15);
+            transform: translateY(-2px);
+        }
+        .intl-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .intl-card-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #5a3e2b;
+            padding: 10px 8px;
+        }
     </style>
 </head>
 <body>
@@ -177,6 +222,28 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                 </div>
             </a>
+        </div>
+    </div>
+
+    <div class="cards-section">
+        <h2 class="cards-section-title">البطاقات الدولية</h2>
+        <div class="cards-grid">
+            <div class="intl-card">
+                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Business.avif" alt="بطاقة ليبنك بزنس">
+                <div class="intl-card-name">بطاقة ليبنك بزنس</div>
+            </div>
+            <div class="intl-card">
+                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Travel-1.avif" alt="بطاقة ليبنك ترافل">
+                <div class="intl-card-name">بطاقة ليبنك ترافل</div>
+            </div>
+            <div class="intl-card">
+                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-1.avif" alt="بطاقة وورلد إيليت">
+                <div class="intl-card-name">بطاقة وورلد إيليت</div>
+            </div>
+            <div class="intl-card">
+                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-copy.avif" alt="بطاقة ليبنك كوربرت">
+                <div class="intl-card-name">بطاقة ليبنك كوربرت</div>
+            </div>
         </div>
     </div>
 
