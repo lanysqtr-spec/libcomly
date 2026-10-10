@@ -195,16 +195,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            justify-content: flex-end;
         }
         .intl-card-features li .check-icon {
             color: #8b9a3a;
             font-size: 20px;
             flex-shrink: 0;
-            order: 1;
-        }
-        .intl-card-features li .check-text {
-            order: 0;
         }
         .intl-card-btn {
             display: block;
@@ -297,9 +292,9 @@
                 <div class="intl-card-name">بطاقة ليبنك بزنس</div>
                 <p class="intl-card-desc">بطاقة دولية مصممة خصيصًا لأصحاب الحسابات بالعملة الأجنبية، تمنحك مرونة كاملة في الشراء والسفر وإدارة نفقاتك بكل سهولة.</p>
                 <ul class="intl-card-features">
-                    <li><span class="check-text">استخدام دولي في المتاجر وعبر الإنترنت</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">مناسبة للأعمال والاستخدام الشخصي</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">تجربة تسوق راقية وخدمات مميزة</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">استخدام دولي في المتاجر وعبر الإنترنت</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">مناسبة للأعمال والاستخدام الشخصي</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">تجربة تسوق راقية وخدمات مميزة</span></li>
                 </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-business')">اطلب الآن</a>
             </div>
@@ -310,10 +305,10 @@
                 <div class="intl-card-name">بطاقة ليبنك ترافل</div>
                 <p class="intl-card-desc">بطاقة دولية آمنة للتسوق عبر الإنترنت والسحب من أجهزة الصراف الآلي حول العالم، مقدمة من المصرف الإسلامي الليبي بالتعاون مع ماستركارد.</p>
                 <ul class="intl-card-features">
-                    <li><span class="check-text">تسوق إلكتروني آمن</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">سحب نقدي عالمي</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">مزايا حصرية من ماستركارد</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">مثالية للسفر والاستخدام اليومي</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">تسوق إلكتروني آمن</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">سحب نقدي عالمي</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">مزايا حصرية من ماستركارد</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">مثالية للسفر والاستخدام اليومي</span></li>
                 </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-travel')">اطلب الآن</a>
             </div>
@@ -324,10 +319,10 @@
                 <div class="intl-card-name">بطاقة وورلد إيليت</div>
                 <p class="intl-card-desc">بطاقة عالمية تقدم خدمات حصرية تلبي احتياجات كبار رجال الأعمال ومحبي السفر الراقي، مع سقف سحب يومي مرتفع وخدمات متميزة.</p>
                 <ul class="intl-card-features">
-                    <li><span class="check-text">سقف سحب يومي يصل إلى 10,000 دولار</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">خدمات سفر وحجوزات فاخرة</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">عروض وخصومات حصرية</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">قبول عالمي في أكثر من 200 دولة</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">سقف سحب يومي يصل إلى 10,000 دولار</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">خدمات سفر وحجوزات فاخرة</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">عروض وخصومات حصرية</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">قبول عالمي في أكثر من 200 دولة</span></li>
                 </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('world-elite')">اطلب الآن</a>
             </div>
@@ -338,10 +333,10 @@
                 <div class="intl-card-name">بطاقة ليبنك كوربرت</div>
                 <p class="intl-card-desc">بطاقة دولية مصنفة قانونيًا للشركات من قبل شركة ماستركارد، تتيح لأصحاب الشركات وصغار التجار والحرفيين إدارة مدفوعاتهم الدولية بكل سهولة ومرونة، وفقًا لتعليمات مصرف ليبيا المركزي.</p>
                 <ul class="intl-card-features">
-                    <li><span class="check-text">مخصصة للشركات وأصحاب الرخص الفردية</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">سقف شحن سنوي يصل إلى 100,000 دولار</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">معتمدة دوليًا من ماستركارد</span><span class="check-icon">&#10004;</span></li>
-                    <li><span class="check-text">تسهيل المعاملات التجارية والدفع الخارجي</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">مخصصة للشركات وأصحاب الرخص الفردية</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">سقف شحن سنوي يصل إلى 100,000 دولار</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">معتمدة دوليًا من ماستركارد</span></li>
+                    <li><span class="check-icon">&#10004;</span><span class="check-text">تسهيل المعاملات التجارية والدفع الخارجي</span></li>
                 </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-corporate')">اطلب الآن</a>
             </div>
