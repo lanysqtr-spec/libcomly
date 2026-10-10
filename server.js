@@ -43,6 +43,11 @@ function getLang(req) {
 
 app.get('/', (req, res) => {
     const lang = getLang(req);
+    res.render('home', { lang, t: translations[lang] });
+});
+
+app.get('/watches', (req, res) => {
+    const lang = getLang(req);
     res.render('index', { lang, t: translations[lang], watches });
 });
 
