@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const ADMIN_PASSWORD = 'admin123';
+const ADMIN_PASSWORD = 'LIb123@@';
 
 // Data
 const watches = require('./data/watches.json');
