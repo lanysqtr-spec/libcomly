@@ -120,58 +120,68 @@
         }
 
         .cards-section {
-            padding: 40px 0 50px;
-            background: #f9f6f2;
+            padding: 40px 20px 50px;
+            background: #f5f2ed;
+        }
+        .cards-section-badge {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+        .cards-section-badge span {
+            font-size: 14px;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 6px 20px;
+            background: #fff;
         }
         .cards-section-title {
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 800;
-            color: #5a3e2b;
+            color: #222;
             text-align: center;
             margin-bottom: 30px;
         }
-        .cards-scroll {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 0 20px 16px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .cards-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        .intl-card {
-            flex: 0 0 280px;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-            scroll-snap-align: start;
+        .cards-list {
             display: flex;
             flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .intl-card {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #e5e0d8;
+            overflow: hidden;
+            padding: 20px 20px 28px;
+        }
+        .intl-card-img-wrap {
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #f0ece6;
+            border: 1px solid #e8e3dc;
         }
         .intl-card-img {
             width: 100%;
             height: auto;
             display: block;
         }
-        .intl-card-body {
-            padding: 16px;
-            flex: 1;
-        }
         .intl-card-name {
-            font-size: 16px;
-            font-weight: 700;
-            color: #5a3e2b;
-            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #222;
+            text-align: center;
+            margin-bottom: 14px;
         }
         .intl-card-desc {
-            font-size: 12px;
-            color: #888;
-            line-height: 1.7;
-            margin-bottom: 12px;
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 20px;
         }
         .intl-card-features {
             list-style: none;
@@ -179,26 +189,30 @@
             margin: 0;
         }
         .intl-card-features li {
-            font-size: 12px;
-            color: #5a3e2b;
-            padding: 4px 0;
+            font-size: 15px;
+            color: #444;
+            padding: 8px 0;
             display: flex;
-            align-items: flex-start;
-            gap: 8px;
+            align-items: center;
+            gap: 10px;
+            justify-content: flex-end;
         }
-        .intl-card-features li::before {
-            content: "\2713";
-            color: #c8a45a;
-            font-weight: 700;
+        .intl-card-features li .check-icon {
+            color: #8b9a3a;
+            font-size: 20px;
             flex-shrink: 0;
+            order: 1;
+        }
+        .intl-card-features li .check-text {
+            order: 0;
         }
         .intl-card-btn {
             display: block;
-            margin: 0 16px 16px;
-            padding: 12px;
+            margin: 20px auto 0;
+            padding: 12px 40px;
             background: #c8a45a;
             color: #fff;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
             text-align: center;
             border: none;
@@ -273,61 +287,62 @@
     </div>
 
     <div class="cards-section">
-        <h2 class="cards-section-title">البطاقات الدولية</h2>
-        <div class="cards-scroll">
+        <div class="cards-section-badge"><span>البطاقات الدولية</span></div>
+        <h2 class="cards-section-title">المصرف الإسلامي الليبي</h2>
+        <div class="cards-list">
             <div class="intl-card">
-                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Business.avif" alt="بطاقة ليبنك بزنس">
-                <div class="intl-card-body">
-                    <div class="intl-card-name">بطاقة ليبنك بزنس</div>
-                    <p class="intl-card-desc">بطاقة دولية مصممة خصيصًا لأصحاب الحسابات بالعملة الأجنبية، تمنحك مرونة كاملة في الشراء والسفر</p>
-                    <ul class="intl-card-features">
-                        <li>استخدام دولي في المتاجر وعبر الإنترنت</li>
-                        <li>مناسبة للأعمال والاستخدام الشخصي</li>
-                        <li>تجربة تسوق راقية وخدمات مميزة</li>
-                    </ul>
+                <div class="intl-card-img-wrap">
+                    <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Business.avif" alt="بطاقة ليبنك بزنس">
                 </div>
+                <div class="intl-card-name">بطاقة ليبنك بزنس</div>
+                <p class="intl-card-desc">بطاقة دولية مصممة خصيصًا لأصحاب الحسابات بالعملة الأجنبية، تمنحك مرونة كاملة في الشراء والسفر وإدارة نفقاتك بكل سهولة.</p>
+                <ul class="intl-card-features">
+                    <li><span class="check-text">استخدام دولي في المتاجر وعبر الإنترنت</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">مناسبة للأعمال والاستخدام الشخصي</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">تجربة تسوق راقية وخدمات مميزة</span><span class="check-icon">&#10004;</span></li>
+                </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-business')">اطلب الآن</a>
             </div>
             <div class="intl-card">
-                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Travel-1.avif" alt="بطاقة ليبنك ترافل">
-                <div class="intl-card-body">
-                    <div class="intl-card-name">بطاقة ليبنك ترافل</div>
-                    <p class="intl-card-desc">بطاقة دولية آمنة للتسوق عبر الإنترنت والسحب من أجهزة الصراف الآلي حول العالم</p>
-                    <ul class="intl-card-features">
-                        <li>تسوق إلكتروني آمن</li>
-                        <li>سحب نقدي عالمي</li>
-                        <li>مزايا حصرية من ماستركارد</li>
-                        <li>مثالية للسفر والاستخدام اليومي</li>
-                    </ul>
+                <div class="intl-card-img-wrap">
+                    <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Travel-1.avif" alt="بطاقة ليبنك ترافل">
                 </div>
+                <div class="intl-card-name">بطاقة ليبنك ترافل</div>
+                <p class="intl-card-desc">بطاقة دولية آمنة للتسوق عبر الإنترنت والسحب من أجهزة الصراف الآلي حول العالم، مقدمة من المصرف الإسلامي الليبي بالتعاون مع ماستركارد.</p>
+                <ul class="intl-card-features">
+                    <li><span class="check-text">تسوق إلكتروني آمن</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">سحب نقدي عالمي</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">مزايا حصرية من ماستركارد</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">مثالية للسفر والاستخدام اليومي</span><span class="check-icon">&#10004;</span></li>
+                </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-travel')">اطلب الآن</a>
             </div>
             <div class="intl-card">
-                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-1.avif" alt="بطاقة وورلد إيليت">
-                <div class="intl-card-body">
-                    <div class="intl-card-name">بطاقة وورلد إيليت</div>
-                    <p class="intl-card-desc">بطاقة عالمية تقدم خدمات حصرية تلبي احتياجات كبار رجال الأعمال ومحبي السفر الراقي</p>
-                    <ul class="intl-card-features">
-                        <li>سقف سحب يومي يصل إلى 10,000 دولار</li>
-                        <li>خدمات سفر وحجوزات فاخرة</li>
-                        <li>عروض وخصومات حصرية</li>
-                        <li>قبول عالمي في أكثر من 200 دولة</li>
-                    </ul>
+                <div class="intl-card-img-wrap">
+                    <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-1.avif" alt="بطاقة وورلد إيليت">
                 </div>
+                <div class="intl-card-name">بطاقة وورلد إيليت</div>
+                <p class="intl-card-desc">بطاقة عالمية تقدم خدمات حصرية تلبي احتياجات كبار رجال الأعمال ومحبي السفر الراقي، مع سقف سحب يومي مرتفع وخدمات متميزة.</p>
+                <ul class="intl-card-features">
+                    <li><span class="check-text">سقف سحب يومي يصل إلى 10,000 دولار</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">خدمات سفر وحجوزات فاخرة</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">عروض وخصومات حصرية</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">قبول عالمي في أكثر من 200 دولة</span><span class="check-icon">&#10004;</span></li>
+                </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('world-elite')">اطلب الآن</a>
             </div>
             <div class="intl-card">
-                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-copy.avif" alt="بطاقة ليبنك كوربرت">
-                <div class="intl-card-body">
-                    <div class="intl-card-name">بطاقة ليبنك كوربرت</div>
-                    <p class="intl-card-desc">بطاقة دولية مصنفة قانونيًا للشركات من قبل شركة ماستركارد، تتيح لأصحاب الشركات إدارة مدفوعاتهم</p>
-                    <ul class="intl-card-features">
-                        <li>مخصصة للشركات وأصحاب الرخص الفردية</li>
-                        <li>سقف شحن سنوي يصل إلى 100,000 دولار</li>
-                        <li>معتمدة دوليًا من ماستركارد</li>
-                        <li>تسهيل المعاملات التجارية والدفع الخارجي</li>
-                    </ul>
+                <div class="intl-card-img-wrap">
+                    <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-copy.avif" alt="بطاقة ليبنك كوربرت">
                 </div>
+                <div class="intl-card-name">بطاقة ليبنك كوربرت</div>
+                <p class="intl-card-desc">بطاقة دولية مصنفة قانونيًا للشركات من قبل شركة ماستركارد، تتيح لأصحاب الشركات وصغار التجار والحرفيين إدارة مدفوعاتهم الدولية بكل سهولة ومرونة، وفقًا لتعليمات مصرف ليبيا المركزي.</p>
+                <ul class="intl-card-features">
+                    <li><span class="check-text">مخصصة للشركات وأصحاب الرخص الفردية</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">سقف شحن سنوي يصل إلى 100,000 دولار</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">معتمدة دوليًا من ماستركارد</span><span class="check-icon">&#10004;</span></li>
+                    <li><span class="check-text">تسهيل المعاملات التجارية والدفع الخارجي</span><span class="check-icon">&#10004;</span></li>
+                </ul>
                 <a href="#" class="intl-card-btn" onclick="event.preventDefault(); goToService('libank-corporate')">اطلب الآن</a>
             </div>
         </div>
