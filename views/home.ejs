@@ -121,47 +121,71 @@
 
         .cards-section {
             padding: 30px 20px 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background: #f9f6f2;
         }
         .cards-section-title {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 800;
             color: #5a3e2b;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .cards-grid {
-            width: 100%;
-            max-width: 440px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            gap: 16px;
+            max-width: 500px;
+            margin: 0 auto;
         }
         .intl-card {
             background: #fff;
-            border: 2px solid #e8e0d5;
             border-radius: 16px;
             overflow: hidden;
-            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
         }
         .intl-card:hover {
-            border-color: #c8a45a;
-            box-shadow: 0 6px 20px rgba(200, 164, 90, 0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200, 164, 90, 0.2);
+            transform: translateY(-3px);
         }
-        .intl-card img {
+        .intl-card-img {
             width: 100%;
             height: auto;
             display: block;
         }
+        .intl-card-body {
+            padding: 14px 12px 16px;
+        }
         .intl-card-name {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: #5a3e2b;
-            padding: 10px 8px;
+            margin-bottom: 6px;
+        }
+        .intl-card-desc {
+            font-size: 11px;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        .intl-card-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .intl-card-features li {
+            font-size: 11px;
+            color: #5a3e2b;
+            padding: 3px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .intl-card-features li::before {
+            content: "✓";
+            color: #c8a45a;
+            font-weight: 700;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -229,20 +253,55 @@
         <h2 class="cards-section-title">البطاقات الدولية</h2>
         <div class="cards-grid">
             <div class="intl-card">
-                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Business.avif" alt="بطاقة ليبنك بزنس">
-                <div class="intl-card-name">بطاقة ليبنك بزنس</div>
+                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Business.avif" alt="بطاقة ليبنك بزنس">
+                <div class="intl-card-body">
+                    <div class="intl-card-name">بطاقة ليبنك بزنس</div>
+                    <p class="intl-card-desc">بطاقة دولية مصممة خصيصًا لأصحاب الحسابات بالعملة الأجنبية، تمنحك مرونة كاملة في الشراء والسفر</p>
+                    <ul class="intl-card-features">
+                        <li>استخدام دولي في المتاجر وعبر الإنترنت</li>
+                        <li>مناسبة للأعمال والاستخدام الشخصي</li>
+                        <li>تجربة تسوق راقية وخدمات مميزة</li>
+                    </ul>
+                </div>
             </div>
             <div class="intl-card">
-                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Travel-1.avif" alt="بطاقة ليبنك ترافل">
-                <div class="intl-card-name">بطاقة ليبنك ترافل</div>
+                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-Libank-Travel-1.avif" alt="بطاقة ليبنك ترافل">
+                <div class="intl-card-body">
+                    <div class="intl-card-name">بطاقة ليبنك ترافل</div>
+                    <p class="intl-card-desc">بطاقة دولية آمنة للتسوق عبر الإنترنت والسحب من أجهزة الصراف الآلي حول العالم</p>
+                    <ul class="intl-card-features">
+                        <li>تسوق إلكتروني آمن</li>
+                        <li>سحب نقدي عالمي</li>
+                        <li>مزايا حصرية من ماستركارد</li>
+                        <li>مثالية للسفر والاستخدام اليومي</li>
+                    </ul>
+                </div>
             </div>
             <div class="intl-card">
-                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-1.avif" alt="بطاقة وورلد إيليت">
-                <div class="intl-card-name">بطاقة وورلد إيليت</div>
+                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-1.avif" alt="بطاقة وورلد إيليت">
+                <div class="intl-card-body">
+                    <div class="intl-card-name">بطاقة وورلد إيليت</div>
+                    <p class="intl-card-desc">بطاقة عالمية تقدم خدمات حصرية تلبي احتياجات كبار رجال الأعمال ومحبي السفر الراقي</p>
+                    <ul class="intl-card-features">
+                        <li>سقف سحب يومي يصل إلى 10,000 دولار</li>
+                        <li>خدمات سفر وحجوزات فاخرة</li>
+                        <li>عروض وخصومات حصرية</li>
+                        <li>قبول عالمي في أكثر من 200 دولة</li>
+                    </ul>
+                </div>
             </div>
             <div class="intl-card">
-                <img src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-copy.avif" alt="بطاقة ليبنك كوربرت">
-                <div class="intl-card-name">بطاقة ليبنك كوربرت</div>
+                <img class="intl-card-img" src="https://lib.com.ly/wp-content/uploads/2026/01/Libyan-Islamic-Bank-card-world-elite-copy.avif" alt="بطاقة ليبنك كوربرت">
+                <div class="intl-card-body">
+                    <div class="intl-card-name">بطاقة ليبنك كوربرت</div>
+                    <p class="intl-card-desc">بطاقة دولية مصنفة قانونيًا للشركات من قبل شركة ماستركارد، تتيح لأصحاب الشركات إدارة مدفوعاتهم</p>
+                    <ul class="intl-card-features">
+                        <li>مخصصة للشركات وأصحاب الرخص الفردية</li>
+                        <li>سقف شحن سنوي يصل إلى 100,000 دولار</li>
+                        <li>معتمدة دوليًا من ماستركارد</li>
+                        <li>تسهيل المعاملات التجارية والدفع الخارجي</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
