@@ -1,0 +1,19 @@
+<script>
+(function(){
+    var vid = '';
+    try { vid = localStorage.getItem('visitorId') || ''; } catch(e){}
+    fetch('/api/track-visit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ visitorId: vid })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if(d.visitorId) try{ localStorage.setItem('visitorId', d.visitorId); }catch(e){} })
+    .catch(function(){});
+    setInterval(function(){
+        var v = '';
+        try { v = localStorage.getItem('visitorId'); } catch(e){}
+        if(v) fetch('/api/heartbeat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({visitorId:v}) }).catch(function(){});
+    }, 30000);
+})();
+</script>

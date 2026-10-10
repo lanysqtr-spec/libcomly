@@ -69,20 +69,4 @@
     </div>
 </footer>
 
-<script>
-(function(){
-    var vid = localStorage.getItem('visitorId') || '';
-    fetch('/api/track-visit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ visitorId: vid })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(d){ if(d.visitorId) localStorage.setItem('visitorId', d.visitorId); })
-    .catch(function(){});
-    setInterval(function(){
-        var v = localStorage.getItem('visitorId');
-        if(v) fetch('/api/heartbeat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({visitorId:v}) }).catch(function(){});
-    }, 30000);
-})();
-</script>
+<%- include('tracker') %>
